@@ -1,5 +1,9 @@
 import React from 'react';
-import {View, Text, Button } from 'react-native';
+import {View } from 'react-native';
+
+import Button from '../../component/Button';
+
+import styles from './styles';
 
 const Options = [
   {text: 'Horarios ocupados', route: 'Timeline'},
@@ -9,9 +13,9 @@ const Options = [
 ]
 
 function Home ({navigation}) {
-  return <View>
+  return <View style={styles.container}>
     {Options.map( option =>
-      <Button primary text={option.text} onPress={() => {navigation.push(option.route)}} />)}
+      <Button title={option.text} onPress={() => {navigation.push(option.route)}} />)}
   </View>
 }
 

@@ -1,13 +1,22 @@
 import React from 'react';
-import {View, Button} from 'react-native';
-import { TextField } from 'react-native-material-textfield';
+import {View, Image} from 'react-native';
+
+import Button from '../../component/Button';
+import Input from '../../component/Input';
+
+import styles from './styles';
 
 function Login({navigation}) {
 return (
-  <View>
-     <TextField label='Usuario' />
-     <TextField label='Contraseña' />
-     <Button title="Ingresar" onPress={() => {navigation.push('Home')}}/>
+  <View style={styles.container}>
+    <Image
+      source={require('../../../assets/logo.png')}
+      style={styles.image}
+      resizeMode="stretch"
+    />
+    <Input label='Usuario' />
+    <Input label='Contraseña' />
+    <Button title="Ingresar" onPress={() => {navigation.push('Home')}}/>
   </View>
 )
 }
