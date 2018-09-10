@@ -4,11 +4,8 @@ import Button from '../../component/Button';
 import styles from './styles';
 
 const Options = [
-    { text: 'Horario Laboral', route: 'WorkTime' },
-    { text: 'Datos Personales', route: 'PersonalSpecification' },
-    { text: 'Materias Deseadas', route: 'WishesSubjects' },
-    //en seguidor de carrera, estarán todas las materias aprobadas/para dar final, info que va a consumir el planificador
-    { text: 'Seguidor de Carrera', route: 'CareerFollower' },
+    { text: 'Mis Alternativas', route: 'MyAlternatives' },
+    { text: 'Planificar Cursada', route: 'PlannerQuarter' },
   ]
 class Profile extends React.Component {
     

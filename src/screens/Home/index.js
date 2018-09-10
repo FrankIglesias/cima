@@ -10,6 +10,7 @@ const Options = [
   { text: 'Cursada actual', route: 'ActualSubjects' },
   { text: 'Perfil', route: 'Profile' },
   { text: 'Siga', route: 'Siga' },
+  { text: 'Planificar Cursada', route: 'Planner'},
 ]
 
 function Home({ navigation }) {

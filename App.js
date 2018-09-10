@@ -6,6 +6,7 @@ import Timeline from './src/screens/TimeLine';
 import Login from './src/screens/Login';
 import Profile from './src/screens/Profile';
 import ActualSubjects from './src/screens/ActualSubjects';
+import Planner from './src/screens/Planner'
 
 
 const RootStack = createStackNavigator({
@@ -41,7 +42,17 @@ const RootStack = createStackNavigator({
     }
   },
   ActualSubjects: {
-    screen: Profile,
+    screen: ActualSubjects,
+    navigationOptions: {
+      headerTintColor: '#FFF',
+      headerStyle: {
+        backgroundColor: '#AE1131'
+      },
+      title: 'Mi Cursada'
+    }
+  },
+  Planner: {
+    screen: Planner,
     navigationOptions: {
       headerTintColor: '#FFF',
       headerStyle: {
