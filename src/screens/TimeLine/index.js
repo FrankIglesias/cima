@@ -17,7 +17,7 @@ class Timeline extends React.Component {
     return (
       <View>
         {this.state.dates.map(date =>
-        <View style={styles.dayContainer}>
+        <View key={date.day} style={styles.dayContainer}>
           <Text style={styles.textField}>{date.day}</Text>
           <Text style={styles.textField}>{date.start}</Text>
           <Text style={styles.textField}>{date.end}</Text>
