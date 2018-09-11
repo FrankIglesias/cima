@@ -3,8 +3,11 @@ import {View, Image} from 'react-native';
 
 import Button from '../../component/Button';
 import Input from '../../component/Input';
+import PasswordInputText from '../../component/PasswordInput';
+
 
 import styles from './styles';
+
 
 function Login({navigation}) {
 return (
@@ -15,7 +18,7 @@ return (
       resizeMode="stretch"
     />
     <Input label='Usuario' />
-    <Input label='Contraseña' />
+    <PasswordInputText label='Contraseña'/>
     <Button title="Ingresar" onPress={() => {navigation.push('Home')}}/>
   </View>
 )
