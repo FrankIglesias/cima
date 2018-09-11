@@ -11,6 +11,7 @@ import CareerFollower from './src/screens/CareerFollower';
 import PersonalSpecifications from './src/screens/PersonalSpecifications';
 import WishesSubjects from './src/screens/WishesSubjects';
 import WorkTime from './src/screens/WorkTime';
+import ApprovedSubjects from './src/screens/ApprovedSubjects';
 
 
 const RootStack = createStackNavigator({
@@ -114,7 +115,17 @@ const RootStack = createStackNavigator({
         },
         title: 'Horario Laboral'
       }
-  }
+  },
+  ApprovedSubjects: {
+    screen: ApprovedSubjects,
+    navigationOptions: {
+      headerTintColor: '#FFF',
+      headerStyle: {
+        backgroundColor: '#AE1131'
+      },
+      title: 'Horario Laboral'
+    }
+}
 },{
   initialRouteName : 'Login'
 });
