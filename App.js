@@ -4,12 +4,27 @@ import { createStackNavigator } from 'react-navigation';
 import HomeScreen from './src/screens/Home';
 import Timeline from './src/screens/TimeLine';
 import Login from './src/screens/Login';
-import Profile from './src/screens/Profile';
+import ProfileScreen from './src/screens/Profile';
 import ActualSubjects from './src/screens/ActualSubjects';
 import Planner from './src/screens/Planner'
+import CareerFollower from './src/screens/CareerFollower';
+import PersonalSpecifications from './src/screens/PersonalSpecifications';
+import WishesSubjects from './src/screens/WishesSubjects';
+import WorkTime from './src/screens/WorkTime';
+import ApprovedSubjects from './src/screens/ApprovedSubjects';
 
 
 const RootStack = createStackNavigator({
+  Login: {
+    screen: Login,
+    navigationOptions: {
+      headerTintColor: '#FFF',
+      headerStyle: {
+          backgroundColor: '#AE1131',
+      },
+      title: 'Iniciar Sesión'
+    }
+  },
   Home: {
     screen: HomeScreen,
     navigationOptions: {
@@ -32,7 +47,7 @@ const RootStack = createStackNavigator({
     }
   },
   Profile: {
-    screen: Profile,
+    screen: ProfileScreen,
     navigationOptions: {
       headerTintColor: '#FFF',
       headerStyle: {
@@ -58,19 +73,59 @@ const RootStack = createStackNavigator({
       headerStyle: {
         backgroundColor: '#AE1131'
       },
-      title: 'Mi Cursada'
+      title: 'Planificador'
     }
   },
-  Login: {
-    screen: Login,
+  CareerFollower: {
+    screen: CareerFollower,
     navigationOptions: {
       headerTintColor: '#FFF',
       headerStyle: {
-          backgroundColor: '#AE1131',
+        backgroundColor: '#AE1131'
       },
-      title: 'Iniciar Sesión'
+      title: 'Seguidor de Carrera'
     }
-  }
+  },
+  PersonalSpecifications: {
+    screen: PersonalSpecifications,
+    navigationOptions: {
+      headerTintColor: '#FFF',
+      headerStyle: {
+        backgroundColor: '#AE1131'
+      },
+      title: 'Datos Personales'
+    }
+  },
+  WishesSubjects: {
+    screen: WishesSubjects,
+    navigationOptions: {
+      headerTintColor: '#FFF',
+      headerStyle: {
+        backgroundColor: '#AE1131'
+      },
+      title: 'Materias Deseadas'
+    }  
+  },
+    WorkTime: {
+      screen: WorkTime,
+      navigationOptions: {
+        headerTintColor: '#FFF',
+        headerStyle: {
+          backgroundColor: '#AE1131'
+        },
+        title: 'Horario Laboral'
+      }
+  },
+  ApprovedSubjects: {
+    screen: ApprovedSubjects,
+    navigationOptions: {
+      headerTintColor: '#FFF',
+      headerStyle: {
+        backgroundColor: '#AE1131'
+      },
+      title: 'Horario Laboral'
+    }
+}
 },{
   initialRouteName : 'Login'
 });
