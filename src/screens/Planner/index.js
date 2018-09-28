@@ -8,12 +8,11 @@ const Options = [
     { text: 'Planificar Cursada', route: 'PlannerQuarter' },
   ]
 class Profile extends React.Component {
-    
   render() {
     return (
      <View style={styles.container}>
         {Options.map(option =>
-          <Button key={option.route} title={option.text} onPress={() => { navigation.push(option.route) }} />)}
+          <Button key={option.route} title={option.text} onPress={() => { this.props.navigation.push(option.route) }} />)}
       </View>
     )
   }

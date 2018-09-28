@@ -6,7 +6,8 @@ import Timeline from './src/screens/TimeLine';
 import Login from './src/screens/Login';
 import ProfileScreen from './src/screens/Profile';
 import ActualSubjects from './src/screens/ActualSubjects';
-import Planner from './src/screens/Planner'
+import Planner from './src/screens/Planner';
+import PlannerQuarter from './src/screens/PlannerQuarter';
 import CareerFollower from './src/screens/CareerFollower';
 import PersonalSpecifications from './src/screens/PersonalSpecifications';
 import WishesSubjects from './src/screens/WishesSubjects';
@@ -104,7 +105,7 @@ const RootStack = createStackNavigator({
         backgroundColor: '#AE1131'
       },
       title: 'Materias Deseadas'
-    }  
+    }
   },
     WorkTime: {
       screen: WorkTime,
@@ -125,7 +126,17 @@ const RootStack = createStackNavigator({
       },
       title: 'Horario Laboral'
     }
-}
+  },
+  PlannerQuarter: {
+    screen: PlannerQuarter,
+    navigationOptions: {
+      headerTintColor: '#FFF',
+      headerStyle: {
+        backgroundColor: '#AE1131'
+      },
+      title: 'Mala fama - basura'
+    }
+  }
 },{
   initialRouteName : 'Login'
 });
