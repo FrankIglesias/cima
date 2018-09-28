@@ -5,7 +5,7 @@ import styles from './styles';
 
 const Options = [
     { text: 'Mis Alternativas', route: 'MyAlternatives' },
-    { text: 'Planificar Cursada', route: 'PlannerQuarter' },
+    { text: 'Generar Alternativa', route: 'PlannerQuarter' },
   ]
 class Profile extends React.Component {
   render() {

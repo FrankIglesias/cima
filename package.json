@@ -9,6 +9,7 @@
   "dependencies": {
     "react": "16.4.1",
     "react-native": "0.56.0",
+    "react-native-cardview": "^2.0.2",
     "react-native-hide-show-password-input": "^1.0.7",
     "react-native-material-kit": "^0.5.1",
     "react-native-material-textfield": "^0.12.0",

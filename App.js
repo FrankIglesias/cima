@@ -134,7 +134,7 @@ const RootStack = createStackNavigator({
       headerStyle: {
         backgroundColor: '#AE1131'
       },
-      title: 'Mala fama - basura'
+      title: 'Alternativas Generadas'
     }
   }
 },{
