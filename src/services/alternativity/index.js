@@ -4,8 +4,14 @@ import './foundSubjectsController.js';
 import foundAlternativesController from './foundAlternativesController.js';
 import './updates.js';
 
-const defaultMockSubjets = [{ "name": "Administracion Gerencial", "shortName": "T", "color": "#69b717", "schedules": [{ "days": [{ "name": "Lu", "turn": "n", "startHour": 1, "endHour": 5 }], "active": true }, { "days": [{ "name": "Mi", "turn": "n", "startHour": 1, "endHour": 5 }], "active": true }], "isOptional": false, "errorLog": "" },
+const defaultMockSubjets = /*[{ "name": "Administracion Gerencial", "shortName": "T", "color": "#69b717", "schedules": [{ "days": [{ "name": "Lu", "turn": "n", "startHour": 1, "endHour": 5 }], "active": true }, { "days": [{ "name": "Mi", "turn": "n", "startHour": 1, "endHour": 5 }], "active": true }], "isOptional": false, "errorLog": "" },
 { "name": "Inteligencia Artificial", "shortName": "IA", "color": "#69b717", "schedules": [{ "days": [{ "name": "Lu", "turn": "n", "startHour": 1, "endHour": 5 }], "active": true }, { "days": [{ "name": "Mi", "turn": "n", "startHour": 1, "endHour": 5 }], "active": true }], "isOptional": false, "errorLog": "" }];
+*/
+[{ "name": "Administracion Gerencial", "shortName": "T", "color": "#69b717", "schedules": [{ "days": [{ "name": "Lu", "turn": "n", "startHour": 1, "endHour": 5 }], "active": true }, { "days": [{ "name": "Mi", "turn": "n", "startHour": 1, "endHour": 5 }], "active": true }], "isOptional": false, "errorLog": "" },
+{ "name": "Seguridad en Aplicaciones Web", "shortName": "T", "color": "#69b717", "schedules": [{ "days": [{ "name": "Ju", "turn": "n", "startHour": 1, "endHour": 5 }], "active": true  }], "isOptional": false, "errorLog": "" },
+{ "name": "Inteligencia Artificial", "shortName": "IA", "color": "#69b717", "schedules": [{ "days": [{ "name": "Lu", "turn": "n", "startHour": 1, "endHour": 5 }], "active": true }, { "days": [{ "name": "Mi", "turn": "n", "startHour": 1, "endHour": 5 }], "active": true }], "isOptional": false, "errorLog": "" },
+{ "name":"Sistemas embebidos","shortName":"SEAR","color":"#69b717","schedules":[{"days":[{"name":"Ma","turn":"n","startHour":1,"endHour":5}],"active":true},{"days":[{"name":"Lu","turn":"n","startHour":1,"endHour":5}],"active":true}],"isOptional":false,"errorLog":""}];
+
 
 export const generateAlternatives = (subjects = defaultMockSubjets) => {
   inscription.subjects = subjects;
