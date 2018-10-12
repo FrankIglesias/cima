@@ -1,2 +1,1 @@
-# cima
 ![cima](CIMA.png)
