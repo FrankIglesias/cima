@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import { createStackNavigator } from 'react-navigation';
 
 import HomeScreen from './src/screens/Home';
-import Timeline from './src/screens/TimeLine';
 import Login from './src/screens/Login';
 import ProfileScreen from './src/screens/Profile';
 import ActualSubjects from './src/screens/ActualSubjects';
@@ -35,16 +34,6 @@ const RootStack = createStackNavigator({
       },
       headerLeft: null,
       title: 'Inicio'
-    }
-  },
-  Timeline: {
-    screen: Timeline,
-    navigationOptions: {
-      headerTintColor: '#FFF',
-      headerStyle: {
-        backgroundColor: '#AE1131'
-      },
-      title: 'Mis horarios'
     }
   },
   Profile: {
@@ -114,7 +103,7 @@ const RootStack = createStackNavigator({
         headerStyle: {
           backgroundColor: '#AE1131'
         },
-        title: 'Horario Laboral'
+        title: 'Horarios Ocupados'
       }
   },
   ApprovedSubjects: {

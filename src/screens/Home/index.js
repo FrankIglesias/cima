@@ -6,7 +6,6 @@ import Button from '../../component/Button';
 import styles from './styles';
 
 const Options = [
-  { text: 'Horarios ocupados', route: 'Timeline' },
   { text: 'Cursada actual', route: 'ActualSubjects' },
   { text: 'Perfil', route: 'Profile' },
   { text: 'Siga', route: 'Siga' },
