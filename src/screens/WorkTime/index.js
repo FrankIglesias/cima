@@ -3,7 +3,12 @@ import {View, Text } from 'react-native';
 import styles from './styles';
 import HourPicker from '../../component/HourPicker';
 
+/* Esta clase permitirá al usuario setear su horario ocupado, esto permitirá que el planificador omita estos horarios a
+la hora de generar la alternativa */
 
+/* estaría copado aca, poder poner un checkbox de horarios estandar lun-vie 9-18 para ahorrar el trabajo
+  si lo clickeas, que deshabilite la opcion de carga, si no, que la active
+  */
 class WorkTime extends React.Component {
   state = {
     dates: [

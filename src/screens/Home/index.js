@@ -11,7 +11,7 @@ const Options = [
   { text: 'Siga', route: 'Siga' },
   { text: 'Planificar Cursada', route: 'Planner'},
 ]
-
+/* Sacarian/agregarian/moverian algo de este menu? Que? */
 function Home({ navigation }) {
   return <View style={styles.container}>
     {Options.map(option =>

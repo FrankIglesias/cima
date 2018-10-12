@@ -2,11 +2,11 @@ import React from 'react';
 import styles from './styles';
 import { Alert, Text, TextInput, View } from 'react-native';
 import RNPickerSelect from 'react-native-picker-select';
-
-const Materias = {
   /*Faltan electivas, 
   Esto deberiamos sacarlo de esta clase,
   ademas estaba pensando que es mejor una lista de checkbox que cuando se clickea, se considera aprobada, que piensan?*/
+const Materias = {
+
   materias: [
     {
       label: 'Análisis Matemático I',
@@ -146,7 +146,8 @@ const Materias = {
     },
   ]
 }
-
+/* El Objetivo de esta clase es tener un status de las materias que puede o no, cursar el alumno, este será el input para
+   filtrar las materias que le recomendaremos, ya que solo seleccinaremos las que estan en estado "pendiente" */
 class CareerFollower extends React.Component {
   constructor(props) {
     super(props);

@@ -7,7 +7,8 @@ import CardView from 'react-native-cardview';
 
 import * as PlanificadorService from '../../services/alternativity';
 
-
+/* El core de nuestra app, esta vista se encarga de mostrar las alternativas que se generan, 
+la idea es que tengan una estrellita o un corazoncito que se pueda clickear y asi, se guarde */
 class PlannerQuarter extends Component {
   state = {data: []}
 

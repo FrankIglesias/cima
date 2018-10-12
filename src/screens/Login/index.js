@@ -8,7 +8,7 @@ import PasswordInputText from '../../component/PasswordInput';
 
 import styles from './styles';
 
-
+/*Falta harcodear user/pass y probar que valide */
 function Login({navigation}) {
 return (
   <View style={styles.container}>
