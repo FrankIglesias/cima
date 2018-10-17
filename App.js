@@ -1,6 +1,9 @@
 import React, {Component} from 'react';
 import { createStackNavigator } from 'react-navigation';
+import { Provider } from 'react-redux';
 
+import './src/ReactotronConfig';
+import store from './src/redux/store';
 import HomeScreen from './src/screens/Home';
 import Login from './src/screens/Login';
 import ProfileScreen from './src/screens/Profile';
@@ -111,7 +114,9 @@ const RootStack = createStackNavigator({
 export default class App extends Component {
   render() {
     return (
-     <RootStack />
+      <Provider store={store}>
+        <RootStack />
+      </Provider>
     );
   }
 }

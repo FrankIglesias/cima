@@ -1,8 +1,10 @@
 import React from 'react';
+import { connect } from 'react-redux'
 import {View } from 'react-native';
 import moment from 'moment';
 
 import BlockedDayPicker from './components/BlockedDayPicker';
+import Button from '../../component/Button';
 import styles from './styles';
 
 const dates = [
@@ -13,6 +15,14 @@ const dates = [
    'Viernes'
 ];
   class WorkTime extends React.Component {
+    componentDidMount() {
+      if(Object.keys(this.props.labourDays).length) {
+        this.setState({blockedDays: this.props.labourDays});
+      }
+    }
+    saveLabourHours = () => {
+      this.props.dispatch({type: 'MERGE_LABOUR_DAYS', payload: this.state.blockedDays })
+    }
   state = {
     blockedDays: dates.reduce((accum, value ) => ({
       ...accum,
@@ -39,9 +49,15 @@ const dates = [
             startTime={this.state.blockedDays[day].startTime && moment(this.state.blockedDays[day].startTime).format('HH:mm')}
             endTime={this.state.blockedDays[day].endTime && moment(this.state.blockedDays[day].endTime).format('HH:mm')}
           />)}
+
+          <Button title="Guardar" onPress={this.saveLabourHours}/>
       </View>
     )
   }
 }
 
-export default WorkTime;
+const mapStateToProps = store => ({
+  labourDays: store.labourDays
+});
+
+export default connect(mapStateToProps)(WorkTime);
