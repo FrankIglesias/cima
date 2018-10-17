@@ -8,10 +8,8 @@ import ActualSubjects from './src/screens/ActualSubjects';
 import Planner from './src/screens/Planner';
 import PlannerQuarter from './src/screens/PlannerQuarter';
 import CareerFollower from './src/screens/CareerFollower';
-import PersonalSpecifications from './src/screens/PersonalSpecifications';
 import WishesSubjects from './src/screens/WishesSubjects';
 import WorkTime from './src/screens/WorkTime';
-import ApprovedSubjects from './src/screens/ApprovedSubjects';
 
 
 const RootStack = createStackNavigator({
@@ -76,16 +74,6 @@ const RootStack = createStackNavigator({
       title: 'Seguidor de Carrera'
     }
   },
-  PersonalSpecifications: {
-    screen: PersonalSpecifications,
-    navigationOptions: {
-      headerTintColor: '#FFF',
-      headerStyle: {
-        backgroundColor: '#AE1131'
-      },
-      title: 'Datos Personales'
-    }
-  },
   WishesSubjects: {
     screen: WishesSubjects,
     navigationOptions: {
@@ -105,16 +93,6 @@ const RootStack = createStackNavigator({
         },
         title: 'Horarios Ocupados'
       }
-  },
-  ApprovedSubjects: {
-    screen: ApprovedSubjects,
-    navigationOptions: {
-      headerTintColor: '#FFF',
-      headerStyle: {
-        backgroundColor: '#AE1131'
-      },
-      title: 'Horario Laboral'
-    }
   },
   PlannerQuarter: {
     screen: PlannerQuarter,

@@ -5,9 +5,7 @@ import styles from './styles';
 
 const Options = [
     { text: 'Horario Laboral', route: 'WorkTime' },
-    { text: 'Datos Personales', route: 'PersonalSpecifications' },
     { text: 'Materias Deseadas', route: 'WishesSubjects' },
-    //en seguidor de carrera, estarán todas las materias aprobadas/para dar final, info que va a consumir el planificador
     { text: 'Seguidor de Carrera', route: 'CareerFollower' },
   ]
 function Profile({ navigation }) {
