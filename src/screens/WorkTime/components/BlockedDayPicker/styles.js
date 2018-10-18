@@ -3,10 +3,9 @@ import { StyleSheet } from 'react-native';
 export default StyleSheet.create({
   container: {
     flexDirection: 'row',
-    paddingHorizontal: 10,
     alignItems: 'center',
     justifyContent: 'space-between',
-    marginVertical: 20
+    marginVertical: 5
   },
   pickerContainer: {
     width: 100,
@@ -14,7 +13,14 @@ export default StyleSheet.create({
     justifyContent: 'space-between'
   },
   dayText: {
-    fontSize: 20,
+    fontSize: 15,
     fontWeight: 'bold'
+  },
+  touchableButton: {
+    width: 50,
+    height: 20,
+    backgroundColor: '#AE1131',
+    color: 'white',
+    textAlign: 'center'
   }
 });
