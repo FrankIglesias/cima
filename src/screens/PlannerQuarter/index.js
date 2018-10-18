@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {View, Text } from 'react-native';
 import styles from './styles';
 import CardView from 'react-native-cardview';
-
+import {Icon } from 'react-native-elements';
 
 
 import * as PlanificadorService from '../../services/alternativity';
@@ -28,12 +28,14 @@ class PlannerQuarter extends Component {
                 <Text style={styles.cardViewText}>{subject.materia}: {subject.days[0].name} 19:00 a 23:00 </Text>
               )}
             </View>
-            <Icon
-                raised
-                name='heartbeat'
-                type='font-awesome'
-                color='#f50'
-                onPress={() => /*save*/console.log('hello')} />
+            <View>
+                <Icon
+                    raised
+                    name='heartbeat'
+                    type='font-awesome'
+                    color='#f50'
+                    onPress={() => /*save*/console.log('hello')} />
+            </View>
           </CardView>
 
        )}
