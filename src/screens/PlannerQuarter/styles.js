@@ -5,19 +5,20 @@ export default StyleSheet.create({
     paddingHorizontal: 10
   },
   cardView:{
+    marginVertical: 10
   },
   cardViewTitle:{
-    fontSize: 20, 
-    color: '#000', 
-    textAlign: 'center', 
-    marginTop: 50    
- 
+    fontSize: 20,
+    color: '#000',
+    textAlign: 'center',
+    marginTop: 50
+
   },
   cardViewText:{
-    fontSize: 18, 
-    color: '#000', 
-    textAlign: 'center', 
-    marginTop: 50    
- 
+    fontSize: 18,
+    color: '#000',
+    textAlign: 'center',
+    marginTop: 50
+
   }
 });
