@@ -20,5 +20,8 @@ export default StyleSheet.create({
     textAlign: 'center',
     marginTop: 50
 
+  },
+  alternativesContainer : {
+      paddingVertical: 10
   }
 });
