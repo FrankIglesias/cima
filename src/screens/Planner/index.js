@@ -4,7 +4,7 @@ import Button from '../../component/Button';
 import styles from './styles';
 
 const Options = [
-    { text: 'Mis Alternativas', route: 'MyAlternatives' },
+    { text: 'Mis Alternativas', route: 'SavedAlternatives' },
     { text: 'Generar Alternativa', route: 'PlannerQuarter' },
   ]
 class Profile extends React.Component {
