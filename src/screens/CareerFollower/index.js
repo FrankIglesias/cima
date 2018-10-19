@@ -14,7 +14,7 @@ class CareerFollower extends Component {
   render() {
     return(
       <View style={styles.container}>
-        <Text>¿Que materias aprobaste?</Text>
+        <Text style={styles.question}>¿Que materias aprobaste?</Text>
         <ScrollView style={styles.subjectsContainer}>
         {Materias.map(subject => renderCheckbox(subject))}
         </ScrollView>
