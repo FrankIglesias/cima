@@ -17,7 +17,7 @@ class WishesSubjects extends Component {
   render() {
     return(
       <View style={styles.container}>
-        <Text>¿Que materias te gustaría cursar?</Text>
+        <Text style={styles.question}>¿Que materias te gustaría cursar?</Text>
         <ScrollView style={styles.subjectsContainer}>
         {Materias.map(subject => renderCheckbox(subject))}
         </ScrollView>

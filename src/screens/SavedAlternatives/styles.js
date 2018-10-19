@@ -13,7 +13,9 @@ export default StyleSheet.create({
     },
   cardViewText:{
     color: 'black',
-    fontSize: 16
+    fontSize: 16,
+    margin: 5
+
   },
   circle: {
     width: 50,

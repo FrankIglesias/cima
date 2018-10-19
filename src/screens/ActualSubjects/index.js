@@ -41,7 +41,7 @@ class ActualSubjects extends Component {
             <Text style={style.centeredText}>{index+1}</Text>
           </View>
           <View style={style.dondeEstanLasMaterias}>
-            <Text>{subject.label}</Text>
+            <Text style={style.subjectCode}>{subject.label}</Text>
             <Text style={style.subjectCode}>{new Date().getTime().toString().slice(3)} - {Math.random() > 0.5 ? 'Medrano' : 'Campus'}</Text>
           </View>
         </CardView>)}

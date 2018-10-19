@@ -23,6 +23,10 @@ export default StyleSheet.create({
         fontSize: 15
     },
     subjectCode: {
-        fontSize: 12
+        color: 'black',
+        fontSize: 16
+    },
+    dondeEstanLasMaterias: {
+        color: 'black'
     }
 });

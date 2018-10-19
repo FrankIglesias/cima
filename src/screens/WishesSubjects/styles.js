@@ -28,5 +28,9 @@ export default StyleSheet.create({
     },
     red: {
         color: '#AE1131'
+    },
+    question: {
+        fontSize: 16,
+        textAlign: 'center',
     }
 });
