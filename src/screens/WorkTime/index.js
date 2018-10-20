@@ -19,10 +19,15 @@ const dates = [
       if(Object.keys(this.props.labourDays).length) {
         this.setState({blockedDays: this.props.labourDays});
       }
+
+      if(Object.keys(this.props.navigation).length) {
+        this.setState({navigation: this.props.navigation});
+      }
     }
     saveLabourHours = () => {
-      this.props.dispatch({type: 'MERGE_LABOUR_DAYS', payload: this.state.blockedDays })
-    }
+      this.props.dispatch({type: 'MERGE_LABOUR_DAYS', payload: this.state.blockedDays });
+      this.state.navigation.pop();
+        }
   state = {
     blockedDays: dates.reduce((accum, value ) => ({
       ...accum,
