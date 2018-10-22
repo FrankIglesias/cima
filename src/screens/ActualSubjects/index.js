@@ -1,16 +1,50 @@
-import React from 'react';
-import {View, Text } from 'react-native';
+import React, { Component } from 'react';
+import {View, Text, Button } from 'react-native';
+import CardView from '../../component/CardView';
 
-import styles from './styles';
+import style from './styles';
 
-/* Esta vista, se encarga de mostrar que materias se encuentra cursando el alumno.
-Particularmente, no le encuentro el sentido, ya que deberiamos cargar las materias, recortaria esta vista tal vez
-Que piensan? Se les ocurre algo mas para el alcance? */
-class ActualSubjects extends React.Component {
+const actualSubjects =  [
+  {
+    label: 'Análisis Matemático I',
+    value: 'AMI',
+  },
+  {
+    label: 'Álgebra y Geometría Analítica',
+    value: 'ALGEBRA',
+  },
+  {
+    label: 'Matemática Discreta',
+    value: 'MATDISC',
+  },
+  {
+    label: 'Sistemas y Organizaciones',
+    value: 'SISYORG',
+  },
+  {
+    label: 'Algoritmo y Estructuras de Datos',
+    value: 'ALGO',
+  },
+  {
+    label: 'Arquitectura de Computadoras ',
+    value: 'ARQ',
+  }
+];
+
+class ActualSubjects extends Component {
   render() {
     return (
       <View>
-          <Text>holass</Text>
+        {actualSubjects.map((subject, index) =>
+        <CardView style={style.cardStyle} key={subject.label}>
+          <View style={style.circle}>
+            <Text style={style.centeredText}>{index+1}</Text>
+          </View>
+          <View style={style.dondeEstanLasMaterias}>
+            <Text style={style.subjectCode}>{subject.label}</Text>
+            <Text style={style.subjectCode}>{new Date().getTime().toString().slice(3)} - {Math.random() > 0.5 ? 'Medrano' : 'Campus'}</Text>
+          </View>
+        </CardView>)}
       </View>
     )
   }

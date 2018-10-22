@@ -13,6 +13,7 @@ import PlannerQuarter from './src/screens/PlannerQuarter';
 import CareerFollower from './src/screens/CareerFollower';
 import WishesSubjects from './src/screens/WishesSubjects';
 import WorkTime from './src/screens/WorkTime';
+import SavedAlternatives from './src/screens/SavedAlternatives';
 
 
 const RootStack = createStackNavigator({
@@ -75,6 +76,16 @@ const RootStack = createStackNavigator({
         backgroundColor: '#AE1131'
       },
       title: 'Seguidor de Carrera'
+    }
+  },
+  SavedAlternatives: {
+    screen: SavedAlternatives,
+    navigationOptions: {
+      headerTintColor: '#FFF',
+      headerStyle: {
+        backgroundColor: '#AE1131'
+      },
+      title: 'Alternativas Guardadas'
     }
   },
   WishesSubjects: {

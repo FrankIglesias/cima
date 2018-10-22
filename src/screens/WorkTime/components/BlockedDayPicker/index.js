@@ -1,11 +1,10 @@
-import React from 'react';
+import React, { Component } from 'react';
 import {View, Text, TouchableOpacity } from 'react-native';
 import DateTimePicker from 'react-native-modal-datetime-picker';
-import moment from 'moment';
 
 import styles from './styles';
 
-  class BlockedDayPicker extends React.Component {
+  class BlockedDayPicker extends Component {
   state = {
     showStartDatePicker: false,
     showEndDatePicker: false
@@ -14,17 +13,16 @@ import styles from './styles';
   toggleStartDatePicker =() => this.setState(prevState => ({showStartDatePicker: !prevState.showStartDatePicker}))
   toggleEndDatePicker =() => this.setState(prevState => ({showEndDatePicker: !prevState.showEndDatePicker}))
 
-
   render() {
     return (
       <View style={styles.container}>
         <Text style={styles.dayText}>{this.props.day}</Text>
         <View style={styles.pickerContainer}>
           <TouchableOpacity onPress={this.toggleStartDatePicker}>
-            <Text>{this.props.startTime ? this.props.startTime : '-'}</Text>
+            <Text style={styles.touchableButton}>{this.props.startTime ? this.props.startTime : '-'}</Text>
           </TouchableOpacity>
           <TouchableOpacity onPress={this.toggleEndDatePicker}>
-            <Text>{this.props.endTime ? this.props.endTime : '-' }</Text>
+            <Text style={styles.touchableButton}>{this.props.endTime ? this.props.endTime : '-' }</Text>
           </TouchableOpacity>
         </View>
         <DateTimePicker

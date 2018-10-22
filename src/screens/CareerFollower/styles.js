@@ -6,7 +6,7 @@ export default StyleSheet.create({
         backgroundColor: '#fff',
         justifyContent: 'center',
         paddingHorizontal: 10,
-      },      
+      },
  pickerSelectStyles:{
         fontSize: 16,
         paddingTop: 13,
@@ -17,5 +17,19 @@ export default StyleSheet.create({
         borderRadius: 4,
         backgroundColor: 'white',
         color: 'black',
+    },
+    subjectContainer: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        paddingHorizontal: 5
+    },
+    subjectsContainer: {
+    },
+    red: {
+        color: '#AE1131'
+    },
+    question: {
+        fontSize: 16,
+        textAlign: 'center',
     }
 });

@@ -8,11 +8,11 @@ import * as PlanificadorService from '../../services/alternativity';
 
 /* El core de nuestra app, esta vista se encarga de mostrar las alternativas que se generan,
 la idea es que tengan una estrellita o un corazoncito que se pueda clickear y asi, se guarde */
-class PlannerQuarter extends Component {
+class SavedAlternatives extends Component {
   state = {data: []}
 
   componentDidMount() {
-    this.setState({data: PlanificadorService.generateAlternatives()})
+    this.setState({data: PlanificadorService.generateSavedAlternatives()})
   }
   render() {
     return (
@@ -41,4 +41,4 @@ class PlannerQuarter extends Component {
   }
 }
 
-export default PlannerQuarter;
+export default SavedAlternatives;
