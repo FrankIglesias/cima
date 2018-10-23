@@ -1,9 +1,9 @@
 import React from 'react';
 import { TextField } from 'react-native-material-textfield';
 
-function CustomInput({label}) {
+function CustomInput({label, onChangeText}) {
   return (
-    <TextField label={label} tintColor="#AE1131" />
+    <TextField label={label} onChangeText={onChangeText} tintColor="#AE1131" />
   );
 }
 

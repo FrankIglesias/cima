@@ -5,6 +5,7 @@ export default StyleSheet.create({
       paddingHorizontal: 5,
       paddingVertical: 10,
       flexDirection: 'row',
+      justifyContent: 'space-around' ,
       margin: 5,
       marginTop: 0
     },
