@@ -2,7 +2,7 @@ import React, {Component, Fragment} from 'react';
 import styles from './styles';
 import { Text, View, CheckBox, ScrollView } from 'react-native';
 import Button from '../../component/Button';
-import Materias from './subjects';
+import Materias from '../CareerFollower/subjects';
 
 const renderCheckbox = ({label}) =>
   <View style={styles.subjectContainer} key={label}>
@@ -10,7 +10,7 @@ const renderCheckbox = ({label}) =>
     <CheckBox style={styles.red} />
   </View>;
 
-class CareerFollower extends Component {
+class ChargeActualSubjects extends Component {
   componentDidMount() {
     if(Object.keys(this.props.navigation).length) {
       this.setState({navigation: this.props.navigation});
@@ -19,14 +19,14 @@ class CareerFollower extends Component {
   render() {
     return(
       <View style={styles.container}>
-        <Text style={styles.question}>¿Que materias aprobaste?</Text>
+        <Text style={styles.question}>¿Que materias estas cursando?</Text>
         <ScrollView  contentContainerStyle={{paddingTop:20,paddingBottom:20}} style={styles.subjectsContainer}>
         {Materias.map(subject => renderCheckbox(subject))}
         </ScrollView>
-        <Button key={"option.route"} title={"option.text"} onPress={() => {   this.state.navigation.push('WishesSubjects'); }} />
+        <Button key={"option.route"} title={"option.text"} onPress={() => {   this.state.navigation.push('CareerFollower'); }} />
       </View>
     )
   }
 }
 
-export default CareerFollower;
+export default ChargeActualSubjects;

@@ -4,14 +4,13 @@ import Button from '../../component/Button';
 import styles from './styles';
 
 const Options = [
-    { text: 'Horario Laboral', route: 'WorkTime' },
-    { text: 'Materias Deseadas', route: 'WishesSubjects' },
-    { text: 'Seguidor de Carrera', route: 'CareerFollower' },
+  { text: 'Cursada Actual', route: 'ActualSubjects' },
+  { text: 'Horarios Laborales', route: 'WorkTime' },
   ]
 function Profile({ navigation }) {
   return <View style={styles.container}>
     {Options.map(option =>
-      <Button key={option.route} title={option.text} onPress={() => { navigation.push(option.route) }} />)}
+      <Button  key={option.route} title={option.text} onPress={() => { navigation.push(option.route) }} />)}
   </View>
 }
 

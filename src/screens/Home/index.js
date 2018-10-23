@@ -6,10 +6,10 @@ import Button from '../../component/Button';
 import styles from './styles';
 
 const Options = [
-  { text: 'Cursada actual', route: 'ActualSubjects' },
+  { text: 'Planificar Cursada', route: 'Planner'},
+  { text: 'Personalizar Alternativas', route: 'ChargeActualSubjects' },
   { text: 'Perfil', route: 'Profile' },
   { text: 'Siga', route: 'Siga', onClick: () => { Linking.openURL('http://siga.frba.utn.edu.ar/') } },
-  { text: 'Planificar Cursada', route: 'Planner'},
 ]
 /* Sacarian/agregarian/moverian algo de este menu? Que? */
 function Home({ navigation }) {
