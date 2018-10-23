@@ -21,10 +21,10 @@ export default StyleSheet.create({
     subjectContainer: {
         flexDirection: 'row',
         justifyContent: 'space-between',
-        paddingHorizontal: 5
+        paddingHorizontal: 5,
+        flex: 1
     },
     subjectsContainer: {
-        paddingVertical: 10
     },
     red: {
         color: '#AE1131'

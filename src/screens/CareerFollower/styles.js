@@ -24,7 +24,6 @@ export default StyleSheet.create({
         paddingHorizontal: 5
     },
     subjectsContainer: {
-        paddingVertical: 10
     },
     red: {
         color: '#AE1131'
