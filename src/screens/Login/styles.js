@@ -10,5 +10,9 @@ export default StyleSheet.create({
     height: 100,
     alignSelf: 'center',
     marginTop: 30
+  },
+  toast: {
+    backgroundColor:'#AE1131',
+    fadeOutDuration : 1000,
   }
 });

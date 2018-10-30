@@ -26,7 +26,7 @@ const dates = [
     }
     saveLabourHours = () => {
       this.props.dispatch({type: 'MERGE_LABOUR_DAYS', payload: this.state.blockedDays });
-      this.state.navigation.pop();
+      this.state.navigation.push('Home');
         }
   state = {
     blockedDays: dates.reduce((accum, value ) => ({

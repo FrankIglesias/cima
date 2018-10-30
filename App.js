@@ -14,6 +14,7 @@ import CareerFollower from './src/screens/CareerFollower';
 import WishesSubjects from './src/screens/WishesSubjects';
 import WorkTime from './src/screens/WorkTime';
 import SavedAlternatives from './src/screens/SavedAlternatives';
+import ChargeActualSubjects from './src/screens/ChargeActualSubjects';
 
 
 const RootStack = createStackNavigator({
@@ -56,6 +57,16 @@ const RootStack = createStackNavigator({
         backgroundColor: '#AE1131'
       },
       title: 'Mi Cursada'
+    }
+  },
+  ChargeActualSubjects: {
+    screen: ChargeActualSubjects,
+    navigationOptions: {
+      headerTintColor: '#FFF',
+      headerStyle: {
+        backgroundColor: '#AE1131'
+      },
+      title: 'Cargar Materias Actuales'
     }
   },
   Planner: {
