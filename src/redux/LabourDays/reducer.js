@@ -1,4 +1,4 @@
-const labourDays = (state = {labourDays: {}}, action) => {
+const labourDays = (state = {labourDays: {} }, action) => {
   switch (action.type) {
     case 'MERGE_LABOUR_DAYS':
       return {

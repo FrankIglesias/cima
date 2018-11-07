@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import { createStackNavigator } from 'react-navigation';
 import { Provider } from 'react-redux';
 
@@ -23,7 +23,7 @@ const RootStack = createStackNavigator({
     navigationOptions: {
       headerTintColor: '#FFF',
       headerStyle: {
-          backgroundColor: '#AE1131',
+        backgroundColor: '#AE1131',
       },
       title: 'Iniciar Sesión'
     }
@@ -109,15 +109,15 @@ const RootStack = createStackNavigator({
       title: 'Materias Deseadas'
     }
   },
-    WorkTime: {
-      screen: WorkTime,
-      navigationOptions: {
-        headerTintColor: '#FFF',
-        headerStyle: {
-          backgroundColor: '#AE1131'
-        },
-        title: 'Horarios Ocupados'
-      }
+  WorkTime: {
+    screen: WorkTime,
+    navigationOptions: {
+      headerTintColor: '#FFF',
+      headerStyle: {
+        backgroundColor: '#AE1131'
+      },
+      title: 'Horarios Ocupados'
+    }
   },
   PlannerQuarter: {
     screen: PlannerQuarter,
@@ -129,11 +129,12 @@ const RootStack = createStackNavigator({
       title: 'Alternativas Generadas'
     }
   }
-},{
-  initialRouteName : 'Login'
-});
+}, {
+    initialRouteName: 'Login'
+  });
 
 export default class App extends Component {
+
   render() {
     return (
       <Provider store={store}>

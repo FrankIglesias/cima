@@ -26,8 +26,13 @@ const dates = [
     }
     saveLabourHours = () => {
       this.props.dispatch({type: 'MERGE_LABOUR_DAYS', payload: this.state.blockedDays });
+      this.props.firebase.database().ref('users/003').set(this.state.blockedDays)
+        .then(_ => console.log('TODO BIEN en workdays'))
+        .catch(err => console.log('TODO MAL en workdays', err))
       this.state.navigation.push('Home');
         }
+
+        
   state = {
     blockedDays: dates.reduce((accum, value ) => ({
       ...accum,
@@ -62,7 +67,8 @@ const dates = [
 }
 
 const mapStateToProps = store => ({
-  labourDays: store.labourDays
+  labourDays: store.rootReducer.labourDays,
+  firebase: store.firebase,
 });
 
 export default connect(mapStateToProps)(WorkTime);
