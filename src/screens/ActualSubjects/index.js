@@ -1,41 +1,23 @@
 import React, { Component } from 'react';
 import {View, Text, Button } from 'react-native';
+import {connect} from 'react-redux';
 import CardView from '../../component/CardView';
 
 import style from './styles';
 
-const actualSubjects =  [
-  {
-    label: 'Análisis Matemático I',
-    value: 'AMI',
-  },
-  {
-    label: 'Álgebra y Geometría Analítica',
-    value: 'ALGEBRA',
-  },
-  {
-    label: 'Matemática Discreta',
-    value: 'MATDISC',
-  },
-  {
-    label: 'Sistemas y Organizaciones',
-    value: 'SISYORG',
-  },
-  {
-    label: 'Algoritmo y Estructuras de Datos',
-    value: 'ALGO',
-  },
-  {
-    label: 'Arquitectura de Computadoras ',
-    value: 'ARQ',
-  }
-];
-
 class ActualSubjects extends Component {
+  state = {
+    actualSubjects: []
+  };
+  componentDidMount() {
+    this.props.firebase.database().ref('users/currentSubjects').once('value', snapshot => {
+      this.setState({ actualSubjects: Object.keys(snapshot.toJSON()).map(key => ({label: snapshot.toJSON()[key]}))});
+  });
+}
   render() {
     return (
       <View>
-        {actualSubjects.map((subject, index) =>
+        {this.state.actualSubjects.map((subject, index) =>
         <CardView style={style.cardStyle} key={subject.label}>
           <View style={style.circle}>
             <Text style={style.centeredText}>{index+1}</Text>
@@ -50,4 +32,8 @@ class ActualSubjects extends Component {
   }
 }
 
-export default ActualSubjects;
+const mapStateToProps = store => ({
+  firebase: store.firebase,
+})
+
+export default connect(mapStateToProps)(ActualSubjects);

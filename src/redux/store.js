@@ -1,5 +1,5 @@
-import { createStore, combineReducers } from 'redux'
-import firebase from 'firebase';
+import { createStore, combineReducers } from 'redux';
+import * as firebase from 'firebase';
 
 import rootReducer from './LabourDays/reducer';
 
@@ -11,7 +11,7 @@ const config = {
     storageBucket: "planificador-de-carrera.appspot.com",
     messagingSenderId: "585575633102"
 };
-console.log('ESTO SE DEBERÍA EJECUTAR SOLO UNA VEZ');
+
 firebase.initializeApp(config);
 
 const finalReducer = combineReducers({

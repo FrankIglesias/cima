@@ -12,7 +12,6 @@ export default StyleSheet.create({
     marginTop: 30
   },
   toast: {
-    backgroundColor:'#AE1131',
-    fadeOutDuration : 1000,
+    backgroundColor:'#AE1131'
   }
 });

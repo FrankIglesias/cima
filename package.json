@@ -7,15 +7,15 @@
     "test": "jest"
   },
   "dependencies": {
-    "firebase": "^5.5.7",
+    "firebase": "^5.0.3",
     "moment": "^2.22.2",
     "react": "16.4.1",
     "react-native": "0.56.0",
     "react-native-cardview": "^2.0.2",
+    "react-native-custom-checkbox": "^1.5.2",
     "react-native-easy-toast": "^1.1.0",
     "react-native-hide-show-password-input": "^1.0.7",
     "react-native-material-dropdown": "^0.11.1",
-    "react-native-material-kit": "^0.5.1",
     "react-native-material-textfield": "^0.12.0",
     "react-native-material-ui": "^1.30.1",
     "react-native-modal-datetime-picker": "^6.0.0",

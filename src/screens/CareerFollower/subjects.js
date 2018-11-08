@@ -24,16 +24,16 @@ export default [
       value: 'ARQ',
     },
     {
+      label: 'Química',
+      value: 'QUIM',
+    },
+    {
       label: 'Física I',
       value: 'FI',
     },
     {
       label: 'Inglés I',
       value: 'INGLESI',
-    },
-    {
-      label: 'Química',
-      value: 'QUIM',
     },
     {
       label: 'Análisis Matemático II',

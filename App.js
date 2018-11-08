@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { createStackNavigator } from 'react-navigation';
 import { Provider } from 'react-redux';
-
+import { View } from 'react-native';
 import './src/ReactotronConfig';
 import store from './src/redux/store';
 import HomeScreen from './src/screens/Home';
@@ -133,7 +133,7 @@ const RootStack = createStackNavigator({
     initialRouteName: 'Login'
   });
 
-export default class App extends Component {
+export default class App extends React.Component {
 
   render() {
     return (

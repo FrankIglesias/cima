@@ -58,7 +58,6 @@ var AlternativeView = function(alternative, index) {
 	};
 
 	var paintAlternativeDays = function() {
-		debugger
 		for (var i = 0; i < alternative.schedules.length; i++) {
 			var alternativeSubject = alternative.schedules[i];
 			for (var j = 0; j < alternativeSubject.schedule.days.length; j++) {

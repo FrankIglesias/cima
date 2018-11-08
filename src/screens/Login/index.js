@@ -28,7 +28,7 @@ class Login extends Component {
 
   changeUserName = value =>  this.setState({inputUsername: value})
   changePassWord = value =>  this.setState({inputPassword: value})
-  
+
   componentDidMount() {
     if (Object.keys(this.props.navigation).length) {
       this.setState({ navigation: this.props.navigation });
@@ -47,7 +47,7 @@ class Login extends Component {
         <Input label='Usuario' onChangeText={this.changeUserName} />
         <PasswordInputText label='Contraseña' onChangeText={this.changePassWord} />
         <Button title="Ingresar" onPress={ this.onSubmit} />
-        <Toast     style={styles.toast}  defaultCloseDelay={100} ref="toast"/>
+        <Toast style={styles.toast}  defaultCloseDelay={100} ref="toast"/>
       </View>
     )
   }

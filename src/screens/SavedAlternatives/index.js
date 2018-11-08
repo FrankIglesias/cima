@@ -16,7 +16,6 @@ class SavedAlternatives extends Component {
   }
   render() {
     return (
-    
      <View style={styles.container}>
          <ScrollView style={styles.alternativesContainer}>
 
@@ -28,7 +27,10 @@ class SavedAlternatives extends Component {
                   </View>
                   <View>
                     {alternativity.schedules.map(subject =>
-                      <Text style={styles.cardViewText}>{subject.materia}: {subject.days[0].name} 19:00 a 23:00 </Text>
+                     <View>
+                      <Text style={styles.cardViewText}>{subject.materia}:</Text>
+                      <Text>{subject.days[0].name} 19:00 a 23:00</Text>
+                    </View>
                     )}
                   </View>
                 </CardView>

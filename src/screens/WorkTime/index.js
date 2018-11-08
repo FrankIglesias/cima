@@ -24,11 +24,7 @@ const dates = [
         this.setState({navigation: this.props.navigation});
       }
       this.props.firebase.database().ref('users/blockedDays').once('value', snapshot => {
-        //console.log(snapshot.toJSON());
-        debugger;
-
         this.setState(prevState => ({ blockedDays:{...prevState.blockedDays,...snapshot.toJSON()}}));
-
     });
     }
     saveLabourHours = () => {
@@ -39,7 +35,7 @@ const dates = [
       this.state.navigation.push('Home');
         }
 
-        
+
   state = {
     blockedDays: dates.reduce((accum, value ) => ({
       ...accum,

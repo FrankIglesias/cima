@@ -25,9 +25,6 @@ export default StyleSheet.create({
     },
     subjectsContainer: {
     },
-    red: {
-        color: '#AE1131'
-    },
     question: {
         fontSize: 16,
         textAlign: 'center',
