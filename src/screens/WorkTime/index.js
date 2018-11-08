@@ -23,10 +23,13 @@ const dates = [
       if(Object.keys(this.props.navigation).length) {
         this.setState({navigation: this.props.navigation});
       }
+      this.props.firebase.database().ref('users/blockedDays').once('value', (snapshot) => {
+        console.log(snapshot.toJSON());
+    });
     }
     saveLabourHours = () => {
       this.props.dispatch({type: 'MERGE_LABOUR_DAYS', payload: this.state.blockedDays });
-      this.props.firebase.database().ref('users/003').set(this.state.blockedDays)
+      this.props.firebase.database().ref('users/blockedDays').set(this.state.blockedDays)
         .then(_ => console.log('TODO BIEN en workdays'))
         .catch(err => console.log('TODO MAL en workdays', err))
       this.state.navigation.push('Home');
