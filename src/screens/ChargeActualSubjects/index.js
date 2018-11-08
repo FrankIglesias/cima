@@ -19,7 +19,7 @@ class ChargeActualSubjects extends Component {
     this.props.firebase.database().ref('users/currentSubjects').set(this.state.subjects)
         .then(_ => console.log('TODO BIEN en workdays'))
         .catch(err => console.log('TODO MAL en workdays', err))
-    this.props.navigation.push('CareerFollower');
+    this.props.navigation.push('WishesSubjects');
   }
 
   selectSubject = value  => () => {

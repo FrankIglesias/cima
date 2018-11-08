@@ -1,46 +1,51 @@
-import { Text, View, CheckBox, ScrollView } from 'react-native';
 import React, {Component, Fragment} from 'react';
 import styles from './styles';
-import Materias from './subjects';
+import { Text, View, ScrollView, CheckBox } from 'react-native';
+import {connect} from 'react-redux';
 import Button from '../../component/Button';
+import Materias from './subjects';
 
- 
-
-/* Esta clase es importante, ya que ponderará estas materias, para la recomendación.
-Estaria bueno reutilizar el componente de la clase CARRER_FOLLOWER*/
 class WishesSubjects extends Component {
-  state = { checked: [] }
-
-
+  state = {
+    subjects: []
+  };
   componentDidMount() {
-    var initArray = [];
-    Materias.map((materia) => initArray.push(false));
-    this.setState({ checked: initArray
-    });
-      if(Object.keys(this.props.navigation).length) {
-        this.setState({navigation: this.props.navigation});
-      }
-  }
-  onChangeCheck(indice) {
-  this.state.checked[indice] =!this.state.checked[indice] ;
+    this.props.firebase.database().ref('users/wishesSubjects').once('value', snapshot => {
+      this.setState(prevState => ({ subjects: Object.keys(snapshot.toJSON()).map(key => snapshot.toJSON()[key])}));
+  });
 }
 
-  
-  render() {
-    return(
-      <View style={styles.container}>
-        <Text style={styles.question}>¿Que materias te gustaría cursar?</Text>
-        <ScrollView contentContainerStyle={{paddingTop:20,paddingBottom:20}}style={styles.subjectsContainer}>
-        {Materias.map((subject,index) =>
-           <View style={styles.subjectContainer} key={subject.label}>
-           <Text>{subject.label} </Text>
-         <CheckBox  onValueChange={() => this.onChangeCheck(index)}  value ={this.state.checked[index]} style={styles.red} />
-         </View>)} 
-        </ScrollView>
-        <Button key={"option.route"} title={"option.text"} onPress={() => {   this.state.navigation.push('Home'); }} />
+  saveAndRedirect = () => {
+    this.props.firebase.database().ref('users/wishesSubjects').set(this.state.subjects)
+        .then(_ => console.log('TODO BIEN en workdays'))
+        .catch(err => console.log('TODO MAL en workdays', err))
+    this.props.navigation.push('Home');
+  }
 
+  selectSubject = value  => () => {
+    if(this.state.subjects.indexOf(value) === -1)
+      this.setState(prevState => ({subjects: prevState.subjects.concat(value)}))
+    else this.setState(prevState => ({subjects: prevState.subjects.filter(subject => subject !== value)}))
+  }
+
+  render() {
+    return (
+      <View style={styles.container}>
+        <Text style={styles.question}>¿Que materias aprobaste?</Text>
+        <ScrollView  contentContainerStyle={{paddingTop:20,paddingBottom:20}} style={styles.subjectsContainer}>
+        {Materias.map(subject =>
+          <View style={styles.subjectContainer} key={subject.label}>
+          <Text>{subject.label}</Text>
+          <CheckBox value={this.state.subjects.indexOf(subject.label) !== -1} onChange={this.selectSubject(subject.label)} />
+        </View>
+        )}
+        </ScrollView>
+        <Button key={"option.route"} title={"option.text"} onPress={this.saveAndRedirect} />
       </View>
     )
   }
 }
-export default WishesSubjects;
+const mapStateToProps = store => ({
+  firebase: store.firebase,
+});
+export default connect(mapStateToProps)(WishesSubjects);

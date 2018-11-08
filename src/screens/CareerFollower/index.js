@@ -1,32 +1,51 @@
 import React, {Component, Fragment} from 'react';
 import styles from './styles';
-import { Text, View, CheckBox, ScrollView } from 'react-native';
+import { Text, View, ScrollView, CheckBox } from 'react-native';
+import {connect} from 'react-redux';
 import Button from '../../component/Button';
 import Materias from './subjects';
 
-const renderCheckbox = ({label}) =>
-  <View style={styles.subjectContainer} key={label}>
-    <Text>{label}</Text>
-    <CheckBox style={styles.red} />
-  </View>;
-
 class CareerFollower extends Component {
+  state = {
+    subjects: []
+  };
   componentDidMount() {
-    if(Object.keys(this.props.navigation).length) {
-      this.setState({navigation: this.props.navigation});
-    }
+   this.props.firebase.database().ref('users/approvedSubjects').once('value', snapshot => {
+      this.setState(prevState => ({ subjects: Object.keys(snapshot.toJSON()).map(key => snapshot.toJSON()[key])}));
+  });
+}
+
+  saveAndRedirect = () => {
+    this.props.firebase.database().ref('users/approvedSubjects').set(this.state.subjects)
+        .then(_ => console.log('TODO BIEN en workdays'))
+        .catch(err => console.log('TODO MAL en workdays', err))
+    this.props.navigation.push('ChargeActualSubjects');
   }
+
+  selectSubject = value  => () => {
+    if(this.state.subjects.indexOf(value) === -1)
+      this.setState(prevState => ({subjects: prevState.subjects.concat(value)}))
+    else this.setState(prevState => ({subjects: prevState.subjects.filter(subject => subject !== value)}))
+  }
+
   render() {
-    return(
+    return (
       <View style={styles.container}>
         <Text style={styles.question}>¿Que materias aprobaste?</Text>
         <ScrollView  contentContainerStyle={{paddingTop:20,paddingBottom:20}} style={styles.subjectsContainer}>
-        {Materias.map(subject => renderCheckbox(subject))}
+        {Materias.map(subject =>
+          <View style={styles.subjectContainer} key={subject.label}>
+          <Text>{subject.label}</Text>
+          <CheckBox value={this.state.subjects.indexOf(subject.label) !== -1} onChange={this.selectSubject(subject.label)} />
+        </View>
+        )}
         </ScrollView>
-        <Button key={"option.route"} title={"option.text"} onPress={() => {   this.state.navigation.push('WishesSubjects'); }} />
+        <Button key={"option.route"} title={"option.text"} onPress={this.saveAndRedirect} />
       </View>
     )
   }
 }
-
-export default CareerFollower;
+const mapStateToProps = store => ({
+  firebase: store.firebase,
+});
+export default connect(mapStateToProps)(CareerFollower);
