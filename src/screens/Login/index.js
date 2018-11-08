@@ -11,6 +11,7 @@ import Toast, {DURATION} from 'react-native-easy-toast'
 
 
 class Login extends Component {
+
   state = {
       userName: 'admin',
       password: 'admin',
@@ -19,8 +20,6 @@ class Login extends Component {
     };
 
   onSubmit = () =>{
-    console.log(this.state.inputUsername)
-    console.log(this.state.inputPassword)
     if (this.state.password == this.state.inputPassword && this.state.userName == this.state.inputUsername) {
       this.props.navigation.push("Home")
     } else { this.refs.toast.show('Usuario o Contraseña Incorrecta');
