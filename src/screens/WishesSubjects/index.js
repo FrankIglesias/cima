@@ -7,16 +7,23 @@ import Materias from './subjects';
 
 class WishesSubjects extends Component {
   state = {
-    subjects: []
+    subjects: [],
+    doneSubjects: []
   };
   componentDidMount() {
     this.props.firebase.database().ref('users/wishesSubjects').once('value', snapshot => {
-      this.setState(prevState => ({ subjects: Object.keys(snapshot.toJSON()).map(key => snapshot.toJSON()[key])}));
+      this.setState({ subjects: Object.keys(snapshot.toJSON()).map(key => snapshot.toJSON()[key])});
+  });
+  this.props.firebase.database().ref('users/currentSubjects').once('value', snapshot => {
+    this.setState(prevState => ({ doneSubjects: prevState.doneSubjects.concat(Object.keys(snapshot.toJSON()).map(key => snapshot.toJSON()[key]))}));
+  });
+  this.props.firebase.database().ref('users/approvedSubjects').once('value', snapshot => {
+    this.setState(prevState => ({ doneSubjects: prevState.doneSubjects.concat(Object.keys(snapshot.toJSON()).map(key => snapshot.toJSON()[key]))}));
   });
 }
 
   saveAndRedirect = () => {
-    this.props.firebase.database().ref('users/wishesSubjects').set(this.state.subjects)
+    this.props.firebase.database().ref('users/wishesSubjects').set(this.state.subjects|| [])
         .then(_ => console.log('TODO BIEN en workdays'))
         .catch(err => console.log('TODO MAL en workdays', err))
     this.props.navigation.push('Home');
@@ -31,16 +38,16 @@ class WishesSubjects extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text style={styles.question}>¿Que materias aprobaste?</Text>
+        <Text style={styles.question}>¿Que materias querés cursar?</Text>
         <ScrollView  contentContainerStyle={{paddingTop:20,paddingBottom:20}} style={styles.subjectsContainer}>
-        {Materias.map(subject =>
+        {Materias.filter(subject =>  this.state.doneSubjects.indexOf(subject.label) === -1).map(subject =>
           <View style={styles.subjectContainer} key={subject.label}>
           <Text>{subject.label}</Text>
           <CheckBox value={this.state.subjects.indexOf(subject.label) !== -1} onChange={this.selectSubject(subject.label)} />
         </View>
         )}
         </ScrollView>
-        <Button key={"option.route"} title={"option.text"} onPress={this.saveAndRedirect} />
+        <Button title="Guardar" onPress={this.saveAndRedirect} />
       </View>
     )
   }

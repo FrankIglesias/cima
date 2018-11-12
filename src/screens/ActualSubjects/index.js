@@ -11,6 +11,7 @@ class ActualSubjects extends Component {
   };
   componentDidMount() {
     this.props.firebase.database().ref('users/currentSubjects').once('value', snapshot => {
+      debugger
       this.setState({ actualSubjects: Object.keys(snapshot.toJSON()).map(key => ({label: snapshot.toJSON()[key]}))});
   });
 }

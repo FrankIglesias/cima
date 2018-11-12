@@ -7,16 +7,20 @@ import Materias from '../CareerFollower/subjects';
 
 class ChargeActualSubjects extends Component {
   state = {
-    subjects: []
+    subjects: [],
+    approved: []
   };
   componentDidMount() {
     this.props.firebase.database().ref('users/currentSubjects').once('value', snapshot => {
-      this.setState(prevState => ({ subjects: Object.keys(snapshot.toJSON()).map(key => snapshot.toJSON()[key])}));
+      this.setState({ subjects: Object.keys(snapshot.toJSON()).map(key => snapshot.toJSON()[key])});
   });
+  this.props.firebase.database().ref('users/approvedSubjects').once('value', snapshot => {
+    this.setState({ approved: Object.keys(snapshot.toJSON()).map(key => snapshot.toJSON()[key])});
+});
 }
 
   saveAndRedirect = () => {
-    this.props.firebase.database().ref('users/currentSubjects').set(this.state.subjects)
+    this.props.firebase.database().ref('users/currentSubjects').set(this.state.subjects || [])
         .then(_ => console.log('TODO BIEN en workdays'))
         .catch(err => console.log('TODO MAL en workdays', err))
     this.props.navigation.push('WishesSubjects');
@@ -31,9 +35,9 @@ class ChargeActualSubjects extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text style={styles.question}>¿Que materias estas cursando?</Text>
+        <Text style={styles.question}>¿Que materias estás cursando?</Text>
         <ScrollView  contentContainerStyle={{paddingTop:20,paddingBottom:20}} style={styles.subjectsContainer}>
-        {Materias.map(subject =>
+        {Materias.filter(subject => this.state.approved.indexOf(subject.label) === -1).map(subject =>
           <View style={styles.subjectContainer} key={subject.label}>
           <Text>{subject.label}</Text>
           <CheckBox value={this.state.subjects.indexOf(subject.label) !== -1} onChange={this.selectSubject(subject.label)} />

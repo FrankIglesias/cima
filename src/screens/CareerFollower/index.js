@@ -7,13 +7,14 @@ import Materias from './subjects';
 
 class CareerFollower extends Component {
   state = {
-    subjects: []
+    subjects: [],
   };
+
   componentDidMount() {
-   this.props.firebase.database().ref('users/approvedSubjects').once('value', snapshot => {
-      this.setState(prevState => ({ subjects: Object.keys(snapshot.toJSON()).map(key => snapshot.toJSON()[key])}));
-  });
-}
+    this.props.firebase.database().ref('users/currentSubjects').once('value', snapshot => {
+      this.setState({ subjects: Object.keys(snapshot.toJSON()).map(key => snapshot.toJSON()[key])});
+    });
+  }
 
   saveAndRedirect = () => {
     this.props.firebase.database().ref('users/approvedSubjects').set(this.state.subjects)
@@ -33,14 +34,14 @@ class CareerFollower extends Component {
       <View style={styles.container}>
         <Text style={styles.question}>¿Que materias aprobaste?</Text>
         <ScrollView  contentContainerStyle={{paddingTop:20,paddingBottom:20}} style={styles.subjectsContainer}>
-        {Materias.map(subject =>
-          <View style={styles.subjectContainer} key={subject.label}>
-          <Text>{subject.label}</Text>
-          <CheckBox value={this.state.subjects.indexOf(subject.label) !== -1} onChange={this.selectSubject(subject.label)} />
+        {this.state.subjects.map(subject =>
+          <View style={styles.subjectContainer} key={subject}>
+          <Text>{subject}</Text>
+          <CheckBox value={this.state.subjects.indexOf(subject) !== -1} onChange={this.selectSubject(subject)} />
         </View>
         )}
         </ScrollView>
-        <Button key={"option.route"} title={"option.text"} onPress={this.saveAndRedirect} />
+        <Button title="Guardar" onPress={this.saveAndRedirect} />
       </View>
     )
   }
