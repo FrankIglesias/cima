@@ -11,7 +11,6 @@ class CareerFollower extends Component {
   };
   componentDidMount() {
     this.props.firebase.database().ref('users/approvedSubjects').once('value', snapshot => {
-      debugger
       this.setState({ approvedSubjects: Object.keys(snapshot.toJSON()).map(key => ({label: snapshot.toJSON()[key]}))});
   });
 }

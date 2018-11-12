@@ -1,9 +1,12 @@
 import React, { Component } from "react";
 import { View, Text, ScrollView } from "react-native";
+import { connect } from "react-redux";
+
 import styles from "./styles";
 import CardView from "react-native-cardview";
 
 import * as PlanificadorService from "../../services/alternativity";
+import WishedSubjects  from "../../Materias de 2";
 
 /* El core de nuestra app, esta vista se encarga de mostrar las alternativas que se generan,
 la idea es que tengan una estrellita o un corazoncito que se pueda clickear y asi, se guarde */
@@ -41,7 +44,11 @@ class PlannerQuarter extends Component {
   state = { data: [] };
 
   componentDidMount() {
-    this.setState({ data: PlanificadorService.generateAlternatives() });
+    this.props.firebase.database().ref('users/wishesSubjects').once('value', snapshot => {
+      const subjectsArray  = Object.keys(snapshot.toJSON()).map(key => snapshot.toJSON()[key]);
+      this.setState({ data: PlanificadorService.generateAlternatives(WishedSubjects.filter(subject => subjectsArray.indexOf(subject.name) !== -1))});
+  });
+
   }
   render() {
     return (
@@ -74,4 +81,8 @@ class PlannerQuarter extends Component {
   }
 }
 
-export default PlannerQuarter;
+const mapStateToProps = store => ({
+  firebase: store.firebase,
+})
+
+export default connect(mapStateToProps)(PlannerQuarter);

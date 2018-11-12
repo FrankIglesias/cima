@@ -16,16 +16,16 @@ export default [
       value: 'SISYORG',
     },
     {
-      label: 'Algoritmo y Estructuras de Datos',
+      label: 'Algoritmos y Estructuras de Datos',
       value: 'ALGO',
     },
     {
-      label: 'Arquitectura de Computadoras ',
+      label: 'Arquitectura de Computadoras',
       value: 'ARQ',
     },
     {
-      label: 'Química',
-      value: 'QUIM',
+      label: 'Ingeniería y Sociedad',
+      value: 'IGNYSOC',
     },
     {
       label: 'Física I',
@@ -64,7 +64,7 @@ export default [
       value: 'REPRESION',
     },
     {
-      label: 'Probabilidades y Estadísticas',
+      label: 'Probabilidad y Estadística',
       value: 'PROBA',
     }
   ];

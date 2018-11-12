@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {View, Text, Button } from 'react-native';
+import {View, Text, Button, ScrollView } from 'react-native';
 import {connect} from 'react-redux';
 import CardView from '../../component/CardView';
 
@@ -16,7 +16,7 @@ class ActualSubjects extends Component {
 }
   render() {
     return (
-      <View>
+      <ScrollView>
         {this.state.actualSubjects.map((subject, index) =>
         <CardView style={style.cardStyle} key={subject.label}>
           <View style={style.circle}>
@@ -27,7 +27,7 @@ class ActualSubjects extends Component {
             <Text style={style.subjectCode}>{new Date().getTime().toString().slice(3)} - {Math.random() > 0.5 ? 'Medrano' : 'Campus'}</Text>
           </View>
         </CardView>)}
-      </View>
+      </ScrollView>
     )
   }
 }
