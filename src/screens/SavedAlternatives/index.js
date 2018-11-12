@@ -2,6 +2,8 @@ import React, {Component} from 'react';
 import {View, Text, ScrollView } from 'react-native';
 import styles from './styles';
 import CardView from 'react-native-cardview';
+import { connect } from "react-redux";
+
 
 import * as PlanificadorService from '../../services/alternativity';
 
@@ -38,24 +40,28 @@ const schedulesToTimes = {
 /* El core de nuestra app, esta vista se encarga de mostrar las alternativas que se generan,
 la idea es que tengan una estrellita o un corazoncito que se pueda clickear y asi, se guarde */
 class SavedAlternatives extends Component {
-  state = {data: []}
-
-  componentDidMount() {
-    this.setState({data: PlanificadorService.generateSavedAlternatives()})
-  }
+  state = { data: [],
+    iconType: "heart" };
+  
+    componentDidMount() {
+      this.props.firebase.database().ref('users/savedAlternativities').once('value', snapshot => {
+        var joined = this.state.data.concat(snapshot.toJSON());
+        this.setState({ data: joined});
+    });
+    }
   render() {
     return (
      <View style={styles.container}>
          <ScrollView style={styles.alternativesContainer}>
 
             {this.state.data.map((alternativity,index) =>
-
+                
               <CardView cardElevation={2}cardMaxElevation={2}cornerRadius={5} paddingBottom={10} style={styles.cardView}>
                   <View style={styles.circle}>
                     <Text style={styles.centeredText}>{index+1}</Text>
                   </View>
                   <View>
-                    {alternativity.schedules.map(subject =>
+                    {alternativity.schedules.map(subject => 
                      <View>
                       <Text style={styles.cardViewText}>{subject.materia}:</Text>
                       <Text>{subject.days[0].name} {schedulesToTimes[subject.days[0].turn][subject.days[0].startHour]} a {schedulesToTimes[subject.days[0].turn][subject.days[0].endHour]}</Text>
@@ -71,5 +77,8 @@ class SavedAlternatives extends Component {
     )
   }
 }
+const mapStateToProps = store => ({
+  firebase: store.firebase,
+})
 
-export default SavedAlternatives;
+export default connect(mapStateToProps)(SavedAlternatives);
