@@ -5,6 +5,7 @@ import styles from './styles';
 
 const Options = [
   { text: 'Cursada Actual', route: 'ActualSubjects' },
+  { text: 'Materias Aprobadas', route: 'CareerFollower' },
   { text: 'Horarios Laborales', route: 'WorkTime' },
   ]
 function Profile({ navigation }) {

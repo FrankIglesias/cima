@@ -7,7 +7,7 @@ import styles from './styles';
 
 const Options = [
   { text: 'Planificar Cursada', route: 'Planner'},
-  { text: 'Personalizar Alternativas', route: 'CareerFollower' },
+  { text: 'Personalizar Alternativas', route: 'WishesSubjects' },
   { text: 'Perfil', route: 'Profile' },
   { text: 'Siga', route: 'Siga', onClick: () => { Linking.openURL('http://siga.frba.utn.edu.ar/') } },
 ]
