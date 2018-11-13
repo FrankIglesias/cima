@@ -66,7 +66,7 @@ class PlannerQuarter extends Component {
     return (
       <View style={styles.container}>
         <ScrollView style={styles.alternativesContainer}>
-        <ActivityIndicator  style={styles.activityIndicator} animating ={this.state.animating} size="large" color="#AE1131" />
+        {this.state.animating? <ActivityIndicator  style={styles.activityIndicator} animating ={this.state.animating} size="large" color="#AE1131" />:null  }
           {this.state.data.map((alternativity, index) => (
             <CardView
               cardElevation={2}

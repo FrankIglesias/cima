@@ -19,7 +19,7 @@ class ActualSubjects extends Component {
   render() {
     return (
       <ScrollView>
-        <ActivityIndicator  style={style.activityIndicator} animating ={this.state.animating} size="large" color="#AE1131" />
+        {this.state.animating? <ActivityIndicator  style={style.activityIndicator} animating ={this.state.animating} size="large" color="#AE1131" />:null  }
         {this.state.actualSubjects.map((subject, index) =>
         <CardView style={style.cardStyle} key={subject.label}>
           <View style={style.circle}>
