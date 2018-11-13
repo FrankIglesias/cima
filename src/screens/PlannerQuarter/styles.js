@@ -37,5 +37,8 @@ export default StyleSheet.create({
    // justifyContent: 'flex-end',
     marginLeft: 200
 
+  },
+  activityIndicator: {
+    justifyContent: 'center'
   }
 });

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { View, Text, ScrollView } from "react-native";
+import { View, Text, ScrollView ,ActivityIndicator} from "react-native";
 import { connect } from "react-redux";
 import Icon from 'react-native-ionicons'
 import styles from "./styles";
@@ -42,13 +42,16 @@ const schedulesToTimes = {
 };
 class PlannerQuarter extends Component {
   state = { data: [],
-  iconType: "heart-empty" };
+  iconType: "heart-empty",
+  animating: true
+   };
 
   componentDidMount() {
     this.props.firebase.database().ref('users/wishesSubjects').once('value', snapshot => {
       const subjectsArray  = Object.keys(snapshot.toJSON()).map(key => snapshot.toJSON()[key]);
       this.setState({ data: PlanificadorService.generateAlternatives(WishedSubjects.filter(subject => subjectsArray.indexOf(subject.name) !== -1))});
-  });
+      this.setState({animating:false})
+    });
   }
 
   onPressButton = value => {
@@ -63,6 +66,7 @@ class PlannerQuarter extends Component {
     return (
       <View style={styles.container}>
         <ScrollView style={styles.alternativesContainer}>
+        <ActivityIndicator  style={styles.activityIndicator} animating ={this.state.animating} size="large" color="#AE1131" />
           {this.state.data.map((alternativity, index) => (
             <CardView
               cardElevation={2}

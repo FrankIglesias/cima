@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {View, Text, Button, ScrollView } from 'react-native';
+import {View, Text, Button, ScrollView,ActivityIndicator } from 'react-native';
 import {connect} from 'react-redux';
 import CardView from '../../component/CardView';
 
@@ -7,16 +7,19 @@ import style from './styles';
 
 class ActualSubjects extends Component {
   state = {
-    actualSubjects: []
+    actualSubjects: [],
+    animating: true
   };
   componentDidMount() {
     this.props.firebase.database().ref('users/currentSubjects').once('value', snapshot => {
       this.setState({ actualSubjects: Object.keys(snapshot.toJSON()).map(key => ({label: snapshot.toJSON()[key]}))});
+      this.setState({animating:false})
   });
 }
   render() {
     return (
       <ScrollView>
+        <ActivityIndicator  style={style.activityIndicator} animating ={this.state.animating} size="large" color="#AE1131" />
         {this.state.actualSubjects.map((subject, index) =>
         <CardView style={style.cardStyle} key={subject.label}>
           <View style={style.circle}>
