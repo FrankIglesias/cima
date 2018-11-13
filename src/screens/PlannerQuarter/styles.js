@@ -32,5 +32,10 @@ export default StyleSheet.create({
   },
   alternativesContainer: {
     paddingVertical: 10
+  },
+  icon: {
+   // justifyContent: 'flex-end',
+    marginLeft: 200
+
   }
 });

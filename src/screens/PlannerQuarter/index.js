@@ -82,7 +82,7 @@ class PlannerQuarter extends Component {
                   </View>
                 ))}
               </View>
-              <View>
+              <View  style={styles.icon}>
                   <Icon name={this.state.iconType} onPress={() => this.onPressButton(alternativity)} />
               </View>
             </CardView>
