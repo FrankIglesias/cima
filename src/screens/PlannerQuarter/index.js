@@ -52,8 +52,6 @@ class PlannerQuarter extends Component {
   }
 
   onPressButton = value => {
-    console.log(value)
-    debugger;
     if(this.state.iconType =="heart-empty" ){
        this.setState({iconType:"heart"})
        this.props.firebase.database().ref('users/savedAlternativities').set(value)
@@ -62,7 +60,6 @@ class PlannerQuarter extends Component {
     else { this.setState({iconType:"heart-empty"})}
   }
   render() {
-    debugger;
     return (
       <View style={styles.container}>
         <ScrollView style={styles.alternativesContainer}>

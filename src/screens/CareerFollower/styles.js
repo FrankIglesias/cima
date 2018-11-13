@@ -34,7 +34,7 @@ export default StyleSheet.create({
         backgroundColor: "#AE1131", 
         borderRadius: 6,
         borderWidth: 1,
-        borderColor: 'gray',
+        borderColor: 'gray'
 
     },
     taskBarText: {
@@ -46,5 +46,7 @@ export default StyleSheet.create({
     },
     taskBarContainer: {
         paddingVertical: 20,
+        justifyContent: 'center',
+        alignItems:'center'
     }
 });
