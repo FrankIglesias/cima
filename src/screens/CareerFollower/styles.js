@@ -18,7 +18,7 @@ export default StyleSheet.create({
     },
     centeredText: {
         textAlign: 'center',
-        textDecorationColor: 'white',
+        textDecorationColor: 'white', 
         color: 'white',
         fontSize: 15
     },
@@ -28,5 +28,23 @@ export default StyleSheet.create({
     },
     dondeEstanLasMaterias: {
         color: 'black'
+    },
+    taskBar: {
+        paddingHorizontal: 20,
+        backgroundColor: "#AE1131", 
+        borderRadius: 6,
+        borderWidth: 1,
+        borderColor: 'gray',
+
+    },
+    taskBarText: {
+        color: 'black',
+        fontSize: 16,
+        paddingVertical: 20,
+        textAlign: 'center'
+
+    },
+    taskBarContainer: {
+        paddingVertical: 20,
     }
 });
