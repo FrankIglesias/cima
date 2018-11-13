@@ -170,7 +170,7 @@ export default [
     "errorLog": ""
   },
    {
-    "name": "Analisis de sistemas I",
+    "name": "Análisis de Sistemas",
     "shortName": "ASI",
     "color": "#69b717",
     "schedules": [
@@ -414,6 +414,88 @@ export default [
           {
             "name": "Ma",
             "turn": "t",
+            "startHour": 1,
+            "endHour": 4
+          }
+        ],
+        "active": true
+      }
+    ],
+    "isOptional": false,
+    "errorLog": ""
+  },
+  {
+    "name": "Sistemas Operativos",
+    "shortName": "PDP",
+    "color": "#69b717",
+    "schedules": [
+      {
+        "days": [
+          {
+            "name": "Ma",
+            "turn": "n",
+            "startHour": 1,
+            "endHour": 4
+          }
+        ],
+        "active": true
+      },
+      {
+        "days": [
+          {
+            "name": "Mi",
+            "turn": "n",
+            "startHour": 1,
+            "endHour": 4
+          }
+        ],
+        "active": true
+      },
+      {"days": [
+          {
+            "name": "Sa",
+            "turn": "m",
+            "startHour": 1,
+            "endHour": 4
+          }
+        ],
+        "active": true
+      }
+    ],
+    "isOptional": false,
+    "errorLog": ""
+  },
+  {
+    "name": "Análisis Matemático II",
+    "shortName": "PDP",
+    "color": "#69b717",
+    "schedules": [
+      {
+        "days": [
+          {
+            "name": "Lu",
+            "turn": "n",
+            "startHour": 1,
+            "endHour": 4
+          }
+        ],
+        "active": true
+      },
+      {
+        "days": [
+          {
+            "name": "Ma",
+            "turn": "m",
+            "startHour": 1,
+            "endHour": 4
+          }
+        ],
+        "active": true
+      },
+      {"days": [
+          {
+            "name": "Mi",
+            "turn": "n",
             "startHour": 1,
             "endHour": 4
           }

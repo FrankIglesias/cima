@@ -40,10 +40,6 @@ export default [
       value: 'AMII',
     },
     {
-      label: 'Física II',
-      value: 'FII',
-    },
-    {
       label: 'Análisis de Sistemas',
       value: 'ANASIST',
     },

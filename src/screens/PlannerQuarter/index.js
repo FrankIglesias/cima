@@ -1,13 +1,13 @@
 import React, { Component } from "react";
-import { View, Text, ScrollView } from "react-native";
+import { View, Text, ScrollView ,ActivityIndicator} from "react-native";
 import { connect } from "react-redux";
-
+import Icon from 'react-native-ionicons'
 import styles from "./styles";
 import CardView from "react-native-cardview";
 
 import * as PlanificadorService from "../../services/alternativity";
 import WishedSubjects  from "../../Materias de 2";
-
+import Button from '../../component/Button';
 /* El core de nuestra app, esta vista se encarga de mostrar las alternativas que se generan,
 la idea es que tengan una estrellita o un corazoncito que se pueda clickear y asi, se guarde */
 
@@ -41,19 +41,32 @@ const schedulesToTimes = {
   }
 };
 class PlannerQuarter extends Component {
-  state = { data: [] };
+  state = { data: [],
+  iconType: "heart-empty",
+  animating: true
+   };
 
   componentDidMount() {
     this.props.firebase.database().ref('users/wishesSubjects').once('value', snapshot => {
       const subjectsArray  = Object.keys(snapshot.toJSON()).map(key => snapshot.toJSON()[key]);
       this.setState({ data: PlanificadorService.generateAlternatives(WishedSubjects.filter(subject => subjectsArray.indexOf(subject.name) !== -1))});
-  });
+      this.setState({animating:false})
+    });
+  }
 
+  onPressButton = value => {
+    if(this.state.iconType =="heart-empty" ){
+       this.setState({iconType:"heart"})
+       this.props.firebase.database().ref('users/savedAlternativities').set(value)
+       .then(_ => console.log('TODO BIEN en workdays'))
+       .catch(err => console.log('TODO MAL en workdays', err)) }
+    else { this.setState({iconType:"heart-empty"})}
   }
   render() {
     return (
       <View style={styles.container}>
         <ScrollView style={styles.alternativesContainer}>
+        <ActivityIndicator  style={styles.activityIndicator} animating ={this.state.animating} size="large" color="#AE1131" />
           {this.state.data.map((alternativity, index) => (
             <CardView
               cardElevation={2}
@@ -72,6 +85,9 @@ class PlannerQuarter extends Component {
                     <Text>{subject.days[0].name} {schedulesToTimes[subject.days[0].turn][subject.days[0].startHour]} a {schedulesToTimes[subject.days[0].turn][subject.days[0].endHour]}</Text>
                   </View>
                 ))}
+              </View>
+              <View  style={styles.icon}>
+                  <Icon name={this.state.iconType} onPress={() => this.onPressButton(alternativity)} />
               </View>
             </CardView>
           ))}
