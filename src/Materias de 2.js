@@ -234,7 +234,7 @@ export default [
     "errorLog": ""
   },
   {
-    "name": "Sistemas de representación",
+    "name": "Sistemas de Representación",
     "shortName": "SR",
     "color": "#69b717",
     "schedules": [
