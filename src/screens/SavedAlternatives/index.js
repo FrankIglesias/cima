@@ -42,11 +42,11 @@ la idea es que tengan una estrellita o un corazoncito que se pueda clickear y as
 class SavedAlternatives extends Component {
   state = { data: [],
     iconType: "heart" };
-  
+
     componentDidMount() {
       this.props.firebase.database().ref('users/savedAlternativities').once('value', snapshot => {
-        var joined = this.state.data.concat(snapshot.toJSON());
-        this.setState({ data: joined});
+        const subjectsArray  = Object.keys(snapshot.toJSON()).map(key => snapshot.toJSON()[key]);
+        this.setState({ data: subjectsArray});
     });
     }
   render() {
@@ -54,23 +54,20 @@ class SavedAlternatives extends Component {
     return (
      <View style={styles.container}>
          <ScrollView style={styles.alternativesContainer}>
-
             {this.state.data.map((alternativity,index) =>
-                
               <CardView cardElevation={2}cardMaxElevation={2}cornerRadius={5} paddingBottom={10} style={styles.cardView}>
                   <View style={styles.circle}>
                     <Text style={styles.centeredText}>{index+1}</Text>
                   </View>
                   <View>
-                    {alternativity.schedules.map(subject => 
+                    {Object.keys(alternativity).map(subject =>
                      <View>
-                      <Text style={styles.cardViewText}>{subject.materia}:</Text>
-                      <Text>{subject.days[0].name} {schedulesToTimes[subject.days[0].turn][subject.days[0].startHour]} a {schedulesToTimes[subject.days[0].turn][subject.days[0].endHour]}</Text>
+                      <Text style={styles.cardViewText}>{alternativity[subject].materia}:</Text>
+                      <Text>{alternativity[subject].days['0'].name} {schedulesToTimes[alternativity[subject].days[0].turn][alternativity[subject].days[0].startHour]} a {schedulesToTimes[alternativity[subject].days[0].turn][alternativity[subject].days[0].endHour]}</Text>
                     </View>
                     )}
                   </View>
                 </CardView>
-
             )}
        </ScrollView>
 
