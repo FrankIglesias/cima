@@ -50,6 +50,7 @@ class SavedAlternatives extends Component {
     });
     }
   render() {
+    debugger;
     return (
      <View style={styles.container}>
          <ScrollView style={styles.alternativesContainer}>
