@@ -1,6 +1,6 @@
 import React, {Component, Fragment} from 'react';
 import styles from './styles';
-import { Text, View, ScrollView, CheckBox } from 'react-native';
+import { Text, View, ScrollView, CheckBox ,ActivityIndicator} from 'react-native';
 import {connect} from 'react-redux';
 import Button from '../../component/Button';
 import Materias from './subjects';
@@ -8,7 +8,9 @@ import Materias from './subjects';
 class WishesSubjects extends Component {
   state = {
     subjects: [],
-    doneSubjects: []
+    doneSubjects: [],
+    animating: true
+
   };
   componentDidMount() {
     this.props.firebase.database().ref('users/wishesSubjects').once('value', snapshot => {
@@ -19,6 +21,7 @@ class WishesSubjects extends Component {
   });
   this.props.firebase.database().ref('users/approvedSubjects').once('value', snapshot => {
     this.setState(prevState => ({ doneSubjects: prevState.doneSubjects.concat(Object.keys(snapshot.toJSON()).map(key => snapshot.toJSON()[key]))}));
+    this.setState({animating:false})
   });
 }
 
@@ -35,7 +38,7 @@ class WishesSubjects extends Component {
     else this.setState(prevState => ({subjects: prevState.subjects.filter(subject => subject !== value)}))
   }
 
-  render() {
+  renderBody = () =>{
     return (
       <View style={styles.container}>
         <Text style={styles.question}>¿Que materias querés cursar?</Text>
@@ -51,6 +54,14 @@ class WishesSubjects extends Component {
       </View>
     )
   }
+  render() {
+    return(
+      <View>
+      {this.state.animating? null: this.renderBody()}
+      {this.state.animating? <ActivityIndicator  style={styles.activityIndicator} animating ={this.state.animating} size="large" color="#AE1131" />:null  }
+      </View>
+ )
+    }
 }
 const mapStateToProps = store => ({
   firebase: store.firebase,
