@@ -12,7 +12,8 @@ const dates = [
    'Martes',
    'Miercoles',
    'Jueves',
-   'Viernes'
+   'Viernes',
+   'Sabado'
 ];
   class WorkTime extends React.Component {
 
@@ -34,17 +35,16 @@ const dates = [
         this.setState({navigation: this.props.navigation});
       }
       this.props.firebase.database().ref('users/blockedDays').once('value', snapshot => {
-        this.setState(prevState => ({ blockedDays:{...prevState.blockedDays,...snapshot.toJSON()}}));
-        this.setState({animating:false})
-
+        this.setState(prevState => ({ blockedDays:{...prevState.blockedDays,...snapshot.toJSON()},animating:false}));
     });
     }
     saveLabourHours = () => {
+      //this.props.dispatch({type: 'MERGE_LABOUR_DAYS', payload: this.state.blockedDays });
       this.props.firebase.database().ref('users/blockedDays').set(this.state.blockedDays)
         .then(_ => console.log('TODO BIEN en workdays'))
         .catch(err => console.log('TODO MAL en workdays', err))
       this.state.navigation.push('Home');
-    }
+        }
 
 
 
@@ -57,7 +57,7 @@ const dates = [
     this.setState(prevState => ({blockedDays: {...prevState.blockedDays, [`${day}`]: {...prevState.blockedDays[day], endTime: time.toString()}}}))
 
     renderBody = () => {
-      return(
+      return( 
         <View style={styles.container}>
         {dates.map(day =>
           <BlockedDayPicker
@@ -70,7 +70,7 @@ const dates = [
           />)}
           <Button title="Guardar" onPress={this.saveLabourHours}/>
       </View>)
-
+      
     }
     renderLoader = () => {
       return <ActivityIndicator  style={styles.activityIndicator} animating ={this.state.animating} size="large" color="#AE1131" />
@@ -79,9 +79,8 @@ const dates = [
     return (
       <View style={styles.container}>
                 {this.state.animating? this.renderLoader():this.renderBody()}
-
       </View>
-
+      
     )
   }
 }
