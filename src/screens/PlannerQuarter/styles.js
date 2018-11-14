@@ -2,7 +2,8 @@ import { StyleSheet } from 'react-native';
 
 export default StyleSheet.create({
   container: {
-
+    flex: 1,
+    paddingHorizontal: 20
   },
   cardView: {
     paddingHorizontal: 5,
@@ -39,6 +40,9 @@ export default StyleSheet.create({
 
   },
   activityIndicator: {
-    justifyContent: 'center'
-  }
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center'
+}
+ 
 });

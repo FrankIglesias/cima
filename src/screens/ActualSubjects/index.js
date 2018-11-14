@@ -16,21 +16,30 @@ class ActualSubjects extends Component {
       this.setState({animating:false})
   });
 }
-  render() {
+renderBody = () => {
     return (
       <ScrollView>
-        {this.state.animating? <ActivityIndicator  style={style.activityIndicator} animating ={this.state.animating} size="large" color="#AE1131" />:null  }
-        {this.state.actualSubjects.map((subject, index) =>
-        <CardView style={style.cardStyle} key={subject.label}>
-          <View style={style.circle}>
-            <Text style={style.centeredText}>{index+1}</Text>
-          </View>
-          <View style={style.dondeEstanLasMaterias}>
-            <Text style={style.subjectCode}>{subject.label}</Text>
-            <Text style={style.subjectCode}>{new Date().getTime().toString().slice(3)} - {Math.random() > 0.5 ? 'Medrano' : 'Campus'}</Text>
-          </View>
-        </CardView>)}
-      </ScrollView>
+            {this.state.actualSubjects.map((subject, index) =>
+            <CardView style={style.cardStyle} key={subject.label}>
+              <View style={style.circle}>
+                <Text style={style.centeredText}>{index+1}</Text>
+              </View>
+              <View style={style.dondeEstanLasMaterias}>
+                <Text style={style.subjectCode}>{subject.label}</Text>
+                <Text style={style.subjectCode}>{new Date().getTime().toString().slice(3)} - {Math.random() > 0.5 ? 'Medrano' : 'Campus'}</Text>
+              </View>
+            </CardView>)}
+       </ScrollView>
+    )
+}
+renderLoader = () => {
+  return <ActivityIndicator  style={style.activityIndicator} animating ={this.state.animating} size="large" color="#AE1131" />
+}
+  render() {
+    return (
+      <View style ={style.container}>
+            {this.state.animating? this.renderLoader() : this.renderBody()}
+      </View>
     )
   }
 }

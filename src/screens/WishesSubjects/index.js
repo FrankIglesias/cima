@@ -56,11 +56,12 @@ class WishesSubjects extends Component {
   }
 
   renderLoader = () => {
-    return <ActivityIndicator  style={styles.activityIndicator} animating ={this.state.animating} size="large" color="#AE1131" />
-  }
+    return (
+    <ActivityIndicator  style={styles.activityIndicator} animating ={this.state.animating} size="large" color="#AE1131" />
+    ) }
   render() {
     return(
-      <View>
+      <View style= {styles.bigContainer}>
       {this.state.animating? this.renderLoader() : this.renderBody()}
       </View>
  )

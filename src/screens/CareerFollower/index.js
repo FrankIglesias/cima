@@ -59,7 +59,6 @@ renderLoader = () => {
     return (
       <View style={style.container}>
                 {this.state.animating? this.renderLoader():this.renderBody()}
-
       </View>
       
     )
