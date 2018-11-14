@@ -4,5 +4,10 @@ export default StyleSheet.create({
   container: {
     flex: 1,
     paddingHorizontal: 20
+  },
+  activityIndicator: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center'
   }
 });

@@ -35,14 +35,10 @@ renderProgressBar = () => {
     </View>
 }
 
-renderLoader = () => {
-  return <ActivityIndicator  style={style.activityIndicator} animating ={this.state.animating} size="large" color="#AE1131" />
-}
-  render() {
-    return (
+renderBody = () => {
+  return(
       <View >
-        {this.state.animating? this.renderLoader():this.renderProgressBar()}
-
+        {this.renderProgressBar()}
         {this.state.approvedSubjects.map((subject, index) =>
         <CardView style={style.cardStyle} key={subject.label}>
           <View style={style.circle}>
@@ -53,6 +49,19 @@ renderLoader = () => {
           </View>
         </CardView>)}
       </View>
+  )
+}
+
+renderLoader = () => {
+  return <ActivityIndicator  style={style.activityIndicator} animating ={this.state.animating} size="large" color="#AE1131" />
+}
+  render() {
+    return (
+      <View style={style.container}>
+                {this.state.animating? this.renderLoader():this.renderBody()}
+
+      </View>
+      
     )
   }
 }
