@@ -4,6 +4,8 @@ import { connect } from "react-redux";
 import Icon from 'react-native-ionicons'
 import styles from "./styles";
 import CardView from "react-native-cardview";
+import Toast, {DURATION} from 'react-native-easy-toast'
+
 
 import * as PlanificadorService from "../../services/alternativity";
 import WishedSubjects  from "../../Materias de 2";
@@ -57,11 +59,15 @@ class PlannerQuarter extends Component {
   }
 
   onPressButton = value => {
+    this.refs.toast.show('Alternativa Guardada');
+
     if(this.state.iconType =="heart-empty" ){
        this.setState({iconType:"heart"})
        this.props.firebase.database().ref('users/savedAlternativities/'+ Math.floor(Math.random() * 1000)).set(value.schedules)
        .then(_ => console.log('TODO BIEN en workdays'))
-       .catch(err => console.log('TODO MAL en workdays', err)) }
+       .catch(err => console.log('TODO MAL en workdays', err)) 
+      }
+       
     else { this.setState({iconType:"heart-empty"})}
   }
 
@@ -93,6 +99,7 @@ class PlannerQuarter extends Component {
               </View>
             </CardView>
           ))}
+
         </ScrollView>
     )
   }
@@ -104,6 +111,7 @@ class PlannerQuarter extends Component {
     return (
       <View style={styles.container}>
           {this.state.animating? this.renderLoader() : this.renderBody()}
+          <Toast style={styles.toast}  defaultCloseDelay={100} ref="toast"/>
       </View>
     );
   }
