@@ -2,6 +2,7 @@ import './subject.js';
 import inscription from './inscription.js';
 import './foundSubjectsController.js';
 import foundAlternativesController from './foundAlternativesController.js';
+import * as TimeService from '../TimeService';
 import './updates.js';
 
 const defaultMockSubjets =[
@@ -22,13 +23,48 @@ const savedMockSubjets = /*[{ "name": "Administracion Gerencial", "shortName": "
 { "name":"Arquitectura de Computadoras","shortName":"SISORG","color":"#69b717","schedules":[{"days":[{"name":"Sa","turn":"m","startHour":1,"endHour":5}],"active":true},{"days":[{"name":"Vi","turn":"n","startHour":1,"endHour":5}],"active":true}],"isOptional":false,"errorLog":""}];
 
 
+const alternativitySerializer = (alt, index) => (
+  {
+    title: "Alternativa " + (index + 1),
+    schedules: alt.schedules.map(
+      mat => ({
+        materia: mat.subject.name,
+        days: mat.schedule.days
+      })
+    )
+  }
+);
+
+const days = {
+  Lunes: 'Lu',
+  Martes: 'Ma',
+  Miercoles: 'Mi',
+  Jueves: 'Ju',
+  Viernes: 'Vi',
+  Sabado: 'Sa'
+};
 
 
-export const generateAlternatives = (subjects = defaultMockSubjets) => {
+export const generateAlternatives = (subjects = defaultMockSubjets, blockedDays) => {
+  let blocked =  {
+    Lu: { m: true, t: true, n: true },
+    Ma: { m: true, t: true, n: true },
+    Mi: { m: true, t: true, n: true },
+    Ju: { m: true, t: true, n: true },
+    Vi: { m: true, t: true, n: true },
+    Sa: { m: true, t: true, n: true }
+  };
   inscription.subjects = subjects;
+  Object.keys(blockedDays)
+    .forEach(day => {
+      TimeService.convertHourToNumber(blockedDays[day].startTime,blockedDays[day].endTime).forEach(time => {
+        blocked[days[day]][time] = false;
+      });
+    });
+    inscription.availableTurnsInDays = blocked;
   inscription.generateAlternatives();
   foundAlternativesController.generateDOM();
-  return inscription.alternatives.map((alt, index) => ({title: "Alternativa " + (index + 1), schedules: alt.schedules.map(mat => ({ materia: mat.subject.name, days: mat.schedule.days}))}));
+  return inscription.alternatives.map(alternativitySerializer);
 }
 
 export const generateSavedAlternatives = (subjects = savedMockSubjets) => {
