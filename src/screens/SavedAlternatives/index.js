@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {View, Text, ScrollView } from 'react-native';
+import {View, Text, ScrollView,ActivityIndicator } from 'react-native';
 import styles from './styles';
 import CardView from 'react-native-cardview';
 import { connect } from "react-redux";
@@ -41,35 +41,46 @@ const schedulesToTimes = {
 la idea es que tengan una estrellita o un corazoncito que se pueda clickear y asi, se guarde */
 class SavedAlternatives extends Component {
   state = { data: [],
-    iconType: "heart" };
+    iconType: "heart",
+    animating: true
+  };
 
     componentDidMount() {
       this.props.firebase.database().ref('users/savedAlternativities').once('value', snapshot => {
         const subjectsArray  = Object.keys(snapshot.toJSON()).map(key => snapshot.toJSON()[key]);
-        this.setState({ data: subjectsArray});
+        this.setState({ data: subjectsArray,animating:false});
     });
     }
+
+    renderBody = () => {
+    return(  <ScrollView style={styles.alternativesContainer}>
+      {this.state.data.map((alternativity,index) =>
+        <CardView cardElevation={2}cardMaxElevation={2}cornerRadius={5} paddingBottom={10} style={styles.cardView}>
+            <View style={styles.circle}>
+              <Text style={styles.centeredText}>{index+1}</Text>
+            </View>
+            <View>
+              {Object.keys(alternativity).map(subject =>
+               <View>
+                <Text style={styles.cardViewText}>{alternativity[subject].materia}:</Text>
+                <Text>{alternativity[subject].days['0'].name} {schedulesToTimes[alternativity[subject].days[0].turn][alternativity[subject].days[0].startHour]} a {schedulesToTimes[alternativity[subject].days[0].turn][alternativity[subject].days[0].endHour]}</Text>
+              </View>
+              )}
+            </View>
+          </CardView>
+      )}
+     </ScrollView>
+     )
+    }
+
+    renderLoader = () => {
+      return <ActivityIndicator  style={styles.activityIndicator} animating ={this.state.animating} size="large" color="#AE1131" />
+    }
+
   render() {
     return (
      <View style={styles.container}>
-         <ScrollView style={styles.alternativesContainer}>
-            {this.state.data.map((alternativity,index) =>
-              <CardView cardElevation={2}cardMaxElevation={2}cornerRadius={5} paddingBottom={10} style={styles.cardView}>
-                  <View style={styles.circle}>
-                    <Text style={styles.centeredText}>{index+1}</Text>
-                  </View>
-                  <View>
-                    {Object.keys(alternativity).map(subject =>
-                     <View>
-                      <Text style={styles.cardViewText}>{alternativity[subject].materia}:</Text>
-                      <Text>{alternativity[subject].days['0'].name} {schedulesToTimes[alternativity[subject].days[0].turn][alternativity[subject].days[0].startHour]} a {schedulesToTimes[alternativity[subject].days[0].turn][alternativity[subject].days[0].endHour]}</Text>
-                    </View>
-                    )}
-                  </View>
-                </CardView>
-            )}
-       </ScrollView>
-
+              {this.state.animating? this.renderLoader() : this.renderBody()}
       </View>
     )
   }

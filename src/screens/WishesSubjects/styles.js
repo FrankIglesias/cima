@@ -7,6 +7,10 @@ export default StyleSheet.create({
         justifyContent: 'center',
         paddingHorizontal: 10,
       },
+      bigContainer: {
+        flex: 1,
+        paddingHorizontal: 20
+      },
  pickerSelectStyles:{
         fontSize: 16,
         paddingTop: 13,
@@ -32,5 +36,10 @@ export default StyleSheet.create({
     question: {
         fontSize: 16,
         textAlign: 'center',
+    },
+    activityIndicator: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center'
     }
 });

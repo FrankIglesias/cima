@@ -50,8 +50,8 @@ class PlannerQuarter extends Component {
     this.props.firebase.database().ref('users/blockedDays').once('value', blockedDaysSnapshot => {
       this.props.firebase.database().ref('users/wishesSubjects').once('value', snapshot => {
         const subjectsArray  = Object.keys(snapshot.toJSON()).map(key => snapshot.toJSON()[key]);
-        this.setState({ data: PlanificadorService.generateAlternatives(WishedSubjects.filter(subject => subjectsArray.indexOf(subject.name) !== -1),blockedDaysSnapshot.toJSON())});
-        this.setState({animating:false})
+        this.setState({ data: PlanificadorService.generateAlternatives(WishedSubjects.filter(subject => subjectsArray.indexOf(subject.name) !== -1),blockedDaysSnapshot.toJSON()),
+                        animating:false});
       });
     });
   }
@@ -64,10 +64,10 @@ class PlannerQuarter extends Component {
        .catch(err => console.log('TODO MAL en workdays', err)) }
     else { this.setState({iconType:"heart-empty"})}
   }
-  render() {
-    return (
-      <View style={styles.container}>
-        <ScrollView style={styles.alternativesContainer}>
+
+  renderBody = () => {
+    return(
+      <ScrollView style={styles.alternativesContainer}>
         {this.state.animating? <ActivityIndicator  style={styles.activityIndicator} animating ={this.state.animating} size="large" color="#AE1131" />:null  }
           {this.state.data.map((alternativity, index) => (
             <CardView
@@ -94,6 +94,16 @@ class PlannerQuarter extends Component {
             </CardView>
           ))}
         </ScrollView>
+    )
+  }
+  renderLoader = () => {
+    return <ActivityIndicator  style={styles.activityIndicator} animating ={this.state.animating} size="large" color="#AE1131" />
+  }
+
+  render() {
+    return (
+      <View style={styles.container}>
+          {this.state.animating? this.renderLoader() : this.renderBody()}
       </View>
     );
   }

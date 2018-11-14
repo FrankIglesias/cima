@@ -1,6 +1,10 @@
 import { StyleSheet } from 'react-native';
 
 export default StyleSheet.create({
+    container: {
+        flex: 1,
+        paddingHorizontal: 20
+      },
     cardStyle: {
       paddingHorizontal: 5,
       paddingVertical: 10,
@@ -28,5 +32,10 @@ export default StyleSheet.create({
     },
     dondeEstanLasMaterias: {
         color: 'black'
-    }
+    },
+    activityIndicator: {
+      flex: 1,
+      justifyContent: 'center',
+      alignItems: 'center'
+  }
 });
