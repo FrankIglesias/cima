@@ -5,10 +5,15 @@ export default StyleSheet.create({
     flex: 1,
     paddingHorizontal: 20
   },
+  row: {
+    flexDirection: 'row'
+  },
   cardView: {
     paddingHorizontal: 5,
     paddingVertical: 10,
     flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
     margin: 5,
     marginTop: 0
   },
@@ -35,9 +40,7 @@ export default StyleSheet.create({
     paddingVertical: 10
   },
   icon: {
-   // justifyContent: 'flex-end',
-    marginLeft: 120
-
+    marginRight: 5
   },
   activityIndicator: {
     flex: 1,
@@ -47,5 +50,5 @@ export default StyleSheet.create({
 toast: {
   backgroundColor:'#008000'
 }
- 
+
 });

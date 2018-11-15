@@ -1,14 +1,14 @@
 import React, { Component } from "react";
-import { View, Text, ScrollView ,ActivityIndicator} from "react-native";
+import { View, Text, ScrollView, ActivityIndicator } from "react-native";
 import { connect } from "react-redux";
 import Icon from 'react-native-ionicons'
 import styles from "./styles";
 import CardView from "react-native-cardview";
-import Toast, {DURATION} from 'react-native-easy-toast'
+import Toast, { DURATION } from 'react-native-easy-toast'
 
 
 import * as PlanificadorService from "../../services/alternativity";
-import WishedSubjects  from "../../Materias de 2";
+import WishedSubjects from "../../Materias de 2";
 import Button from '../../component/Button';
 /* El core de nuestra app, esta vista se encarga de mostrar las alternativas que se generan,
 la idea es que tengan una estrellita o un corazoncito que se pueda clickear y asi, se guarde */
@@ -43,17 +43,20 @@ const schedulesToTimes = {
   }
 };
 class PlannerQuarter extends Component {
-  state = { data: [],
-  iconType: "heart-empty",
-  animating: true
-   };
+  state = {
+    data: [],
+    iconType: "heart-empty",
+    animating: true
+  };
 
   componentDidMount() {
     this.props.firebase.database().ref('users/blockedDays').once('value', blockedDaysSnapshot => {
       this.props.firebase.database().ref('users/wishesSubjects').once('value', snapshot => {
-        const subjectsArray  = Object.keys(snapshot.toJSON() || {}).map(key => snapshot.toJSON()[key]);
-        this.setState({ data: PlanificadorService.generateAlternatives(WishedSubjects.filter(subject => subjectsArray.indexOf(subject.name) !== -1),blockedDaysSnapshot.toJSON()),
-                        animating:false});
+        const subjectsArray = Object.keys(snapshot.toJSON() || {}).map(key => snapshot.toJSON()[key]);
+        this.setState({
+          data: PlanificadorService.generateAlternatives(WishedSubjects.filter(subject => subjectsArray.indexOf(subject.name) !== -1), blockedDaysSnapshot.toJSON()),
+          animating: false
+        });
       });
     });
   }
@@ -61,57 +64,58 @@ class PlannerQuarter extends Component {
   onPressButton = value => {
     this.refs.toast.show('Alternativa Guardada');
 
-    if(this.state.iconType =="heart-empty" ){
-       this.setState({iconType:"heart"})
-       this.props.firebase.database().ref('users/savedAlternativities/'+ Math.floor(Math.random() * 1000)).set(value.schedules)
-       .then(_ => console.log('TODO BIEN en workdays'))
-       .catch(err => console.log('TODO MAL en workdays', err))
-      }
+    if (this.state.iconType == "heart-empty") {
+      this.setState({ iconType: "heart" })
+      this.props.firebase.database().ref('users/savedAlternativities/' + Math.floor(Math.random() * 1000)).set(value.schedules)
+        .then(_ => console.log('TODO BIEN en workdays'))
+        .catch(err => console.log('TODO MAL en workdays', err))
+    }
 
-    else { this.setState({iconType:"heart-empty"})}
+    else { this.setState({ iconType: "heart-empty" }) }
   }
 
   renderBody = () => {
-    return(
+    return (
       <ScrollView style={styles.alternativesContainer}>
-        {this.state.animating? <ActivityIndicator  style={styles.activityIndicator} animating ={this.state.animating} size="large" color="#AE1131" />:null  }
-          {this.state.data.map((alternativity, index) => (
-            <CardView
-              cardElevation={2}
-              cardMaxElevation={2}
-              cornerRadius={5}
-              paddingBottom={10}
-              style={styles.cardView}
-            >
-              <View style={styles.circle}>
-                <Text style={styles.centeredText}>{index + 1}</Text>
-              </View>
-              <View>
-                {alternativity.schedules.map(subject => (
-                  <View>
-                    <Text style={styles.cardViewText}>{subject.materia}:</Text>
-                    <Text>{subject.days[0].name} {schedulesToTimes[subject.days[0].turn][subject.days[0].startHour]} a {schedulesToTimes[subject.days[0].turn][subject.days[0].endHour]}</Text>
-                  </View>
-                ))}
-              </View>
-              <View  style={styles.icon}>
-                  <Icon name={this.state.iconType} onPress={() => this.onPressButton(alternativity)} />
-              </View>
-            </CardView>
-          ))}
-
-        </ScrollView>
+        {this.state.animating ? <ActivityIndicator style={styles.activityIndicator} animating={this.state.animating} size="large" color="#AE1131" /> : null}
+        {this.state.data.map((alternativity, index) => (
+          <CardView
+            cardElevation={2}
+            cardMaxElevation={2}
+            cornerRadius={5}
+            paddingBottom={10}
+            style={styles.cardView}
+          >
+          <View style={styles.row}>
+            <View style={styles.circle}>
+              <Text style={styles.centeredText}>{index + 1}</Text>
+            </View>
+            <View>
+              {alternativity.schedules.map(subject => (
+                <View>
+                  <Text style={styles.cardViewText}>{subject.materia}:</Text>
+                  <Text>{subject.days[0].name} {schedulesToTimes[subject.days[0].turn][subject.days[0].startHour]} a {schedulesToTimes[subject.days[0].turn][subject.days[0].endHour]}</Text>
+                </View>
+              ))}
+            </View>
+            </View>
+            <View style={styles.icon}>
+              <Icon name={this.state.iconType} onPress={() => this.onPressButton(alternativity)} />
+            </View>
+          </CardView>
+        ))}
+      </ScrollView>
     )
   }
   renderLoader = () => {
-    return <ActivityIndicator  style={styles.activityIndicator} animating ={this.state.animating} size="large" color="#AE1131" />
+    return <ActivityIndicator style={styles.activityIndicator} animating={this.state.animating} size="large" color="#AE1131" />
   }
 
   render() {
     return (
       <View style={styles.container}>
-          {this.state.animating? this.renderLoader() : this.renderBody()}
-          <Toast style={styles.toast}  defaultCloseDelay={100} ref="toast"/>
+        {this.state.animating ? this.renderLoader() : this.renderBody()}
+        <Toast style={styles.toast} defaultCloseDelay={100} ref="toast" />
       </View>
     );
   }
