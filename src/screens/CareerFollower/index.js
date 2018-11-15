@@ -26,7 +26,7 @@ renderProgressBar = () => {
     <Text style={style.taskBarText} >Porcentaje de materias aprobadas </Text>
     <ProgressBarAnimated 
         {...style.taskBar}
-        width={600}
+        width={300}
         height={20}
         value={this.state.progress}
        // value= {10}

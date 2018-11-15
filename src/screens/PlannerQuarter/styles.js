@@ -36,7 +36,7 @@ export default StyleSheet.create({
   },
   icon: {
    // justifyContent: 'flex-end',
-    marginLeft: 200
+    marginLeft: 120
 
   },
   activityIndicator: {
