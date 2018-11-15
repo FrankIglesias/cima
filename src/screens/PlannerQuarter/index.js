@@ -51,7 +51,7 @@ class PlannerQuarter extends Component {
   componentDidMount() {
     this.props.firebase.database().ref('users/blockedDays').once('value', blockedDaysSnapshot => {
       this.props.firebase.database().ref('users/wishesSubjects').once('value', snapshot => {
-        const subjectsArray  = Object.keys(snapshot.toJSON()).map(key => snapshot.toJSON()[key]);
+        const subjectsArray  = Object.keys(snapshot.toJSON() || {}).map(key => snapshot.toJSON()[key]);
         this.setState({ data: PlanificadorService.generateAlternatives(WishedSubjects.filter(subject => subjectsArray.indexOf(subject.name) !== -1),blockedDaysSnapshot.toJSON()),
                         animating:false});
       });
@@ -65,9 +65,9 @@ class PlannerQuarter extends Component {
        this.setState({iconType:"heart"})
        this.props.firebase.database().ref('users/savedAlternativities/'+ Math.floor(Math.random() * 1000)).set(value.schedules)
        .then(_ => console.log('TODO BIEN en workdays'))
-       .catch(err => console.log('TODO MAL en workdays', err)) 
+       .catch(err => console.log('TODO MAL en workdays', err))
       }
-       
+
     else { this.setState({iconType:"heart-empty"})}
   }
 
