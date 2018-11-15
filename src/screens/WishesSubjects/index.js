@@ -14,13 +14,13 @@ class WishesSubjects extends Component {
   };
   componentDidMount() {
     this.props.firebase.database().ref('users/wishesSubjects').once('value', snapshot => {
-      this.setState({ subjects: Object.keys(snapshot.toJSON()).map(key => snapshot.toJSON()[key])});
+      this.setState({ subjects: Object.keys(snapshot.toJSON() ||  {}).map(key => snapshot.toJSON()[key])});
   });
   this.props.firebase.database().ref('users/currentSubjects').once('value', snapshot => {
-    this.setState(prevState => ({ doneSubjects: prevState.doneSubjects.concat(Object.keys(snapshot.toJSON()).map(key => snapshot.toJSON()[key]))}));
+    this.setState(prevState => ({ doneSubjects: prevState.doneSubjects.concat(Object.keys(snapshot.toJSON() || {}).map(key => snapshot.toJSON()[key]))}));
   });
   this.props.firebase.database().ref('users/approvedSubjects').once('value', snapshot => {
-    this.setState(prevState => ({ doneSubjects: prevState.doneSubjects.concat(Object.keys(snapshot.toJSON()).map(key => snapshot.toJSON()[key]))}));
+    this.setState(prevState => ({ doneSubjects: prevState.doneSubjects.concat(Object.keys(snapshot.toJSON() || {}).map(key => snapshot.toJSON()[key]))}));
     this.setState({animating:false})
   });
 }
