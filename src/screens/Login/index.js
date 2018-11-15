@@ -13,8 +13,8 @@ import Toast, {DURATION} from 'react-native-easy-toast'
 class Login extends Component {
 
   state = {
-      userName: 'admin',
-      password: 'admin',
+      userName: 'usertest',
+      password: '123456',
       inputPassword: 'aasda',
       inputUsername: 'asda'
     };
