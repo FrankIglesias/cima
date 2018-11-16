@@ -45,7 +45,6 @@ const schedulesToTimes = {
 class PlannerQuarter extends Component {
   state = {
     data: [],
-    iconType: "heart-empty",
     animating: true
   };
 
@@ -63,15 +62,9 @@ class PlannerQuarter extends Component {
 
   onPressButton = value => {
     this.refs.toast.show('Alternativa Guardada');
-
-    if (this.state.iconType == "heart-empty") {
-      this.setState({ iconType: "heart" })
       this.props.firebase.database().ref('users/savedAlternativities/' + Math.floor(Math.random() * 1000)).set(value.schedules)
         .then(_ => console.log('TODO BIEN en workdays'))
         .catch(err => console.log('TODO MAL en workdays', err))
-    }
-
-    else { this.setState({ iconType: "heart-empty" }) }
   }
 
   renderBody = () => {
