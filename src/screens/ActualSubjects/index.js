@@ -12,8 +12,9 @@ class ActualSubjects extends Component {
   };
   componentDidMount() {
     this.props.firebase.database().ref('users/currentSubjects').once('value', snapshot => {
-      this.setState({ actualSubjects: Object.keys(snapshot.toJSON()).map(key => ({label: snapshot.toJSON()[key]}))});
-      this.setState({animating:false})
+      this.setState({ actualSubjects: Object.keys(snapshot.toJSON()).map(key => ({label: snapshot.toJSON()[key]})),
+      animating:false
+    });
   });
 }
 renderBody = () => {

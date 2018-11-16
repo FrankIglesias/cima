@@ -16,30 +16,30 @@ la idea es que tengan una estrellita o un corazoncito que se pueda clickear y as
 const schedulesToTimes = {
   m: {
     0: "07:45",
-    1: "8.30",
-    2: "9.15",
-    3: "10.15",
-    4: "11.00",
-    5: "11.45",
-    6: "12.30"
+    1: "8:30",
+    2: "9:15",
+    3: "10:15",
+    4: "11:00",
+    5: "11:45",
+    6: "12:30"
   },
   t: {
-    0: "14.15",
-    1: "15.00",
-    2: "15.45",
-    3: "16.00",
-    4: "16.45",
-    5: "17.30",
-    6: "18.15"
+    0: "14:15",
+    1: "15:00",
+    2: "15:45",
+    3: "16:00",
+    4: "16:45",
+    5: "17:30",
+    6: "18:15"
   },
   n: {
-    0: "18.15",
-    1: "19.00",
-    2: "19.45",
-    3: "20.30",
-    4: "20.45",
-    5: "21.30",
-    6: "22.15"
+    0: "18:15",
+    1: "19:00",
+    2: "19:45",
+    3: "20:30",
+    4: "20:45",
+    5: "21:30",
+    6: "22:15"
   }
 };
 class PlannerQuarter extends Component {
@@ -86,21 +86,21 @@ class PlannerQuarter extends Component {
             paddingBottom={10}
             style={styles.cardView}
           >
-          <View style={styles.row}>
-            <View style={styles.circle}>
-              <Text style={styles.centeredText}>{index + 1}</Text>
-            </View>
-            <View>
-              {alternativity.schedules.map(subject => (
-                <View>
-                  <Text style={styles.cardViewText}>{subject.materia}:</Text>
-                  <Text>{subject.days[0].name} {schedulesToTimes[subject.days[0].turn][subject.days[0].startHour]} a {schedulesToTimes[subject.days[0].turn][subject.days[0].endHour]}</Text>
-                </View>
-              ))}
-            </View>
+            <View style={styles.row}>
+              <View style={styles.circle}>
+                <Text style={styles.centeredText}>{index + 1}</Text>
+              </View>
+              <View>
+                {alternativity.schedules.map(subject => (
+                  <View>
+                    <Text style={styles.cardViewText}>{subject.materia}:</Text>
+                    <Text>{subject.days[0].name} {schedulesToTimes[subject.days[0].turn][subject.days[0].startHour]} a {schedulesToTimes[subject.days[0].turn][subject.days[0].endHour]} - {Math.random() > 0.5 ? 'Medrano' : 'Campus'}</Text>
+                  </View>
+                ))}
+              </View>
             </View>
             <View style={styles.icon}>
-              <Icon name={this.state.iconType} onPress={() => this.onPressButton(alternativity)} />
+              <Icon name="heart" onPress={() => this.onPressButton(alternativity)} />
             </View>
           </CardView>
         ))}

@@ -3,15 +3,16 @@ import { StyleSheet } from 'react-native';
 export default StyleSheet.create({
     container: {
         paddingTop: 30,
-        backgroundColor: '#fff',
+        paddingBottom: 10,
+        backgroundColor: 'white',
         justifyContent: 'center',
         paddingHorizontal: 10,
-      },
-      bigContainer: {
+    },
+    bigContainer: {
         flex: 1,
         paddingHorizontal: 20
-      },
- pickerSelectStyles:{
+    },
+    pickerSelectStyles: {
         fontSize: 16,
         paddingTop: 13,
         paddingHorizontal: 10,

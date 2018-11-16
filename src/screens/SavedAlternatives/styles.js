@@ -2,20 +2,19 @@ import { StyleSheet } from 'react-native';
 
 export default StyleSheet.create({
   container: {
-    flex: 1,
-    paddingHorizontal: 20
+    flex: 1
   },
   cardView:{
     paddingHorizontal: 5,
     paddingVertical: 10,
     flexDirection: 'row',
+    marginHorizontal: 10,
     margin: 5,
     marginTop: 0
     },
   cardViewText:{
     color: 'black',
-    fontSize: 16,
-    margin: 5
+    fontSize: 16
 
   },
   circle: {

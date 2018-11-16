@@ -3,7 +3,8 @@ import { StyleSheet } from 'react-native';
 export default StyleSheet.create({
     container: {
         flex: 1,
-        paddingHorizontal: 20
+        paddingHorizontal: 10,
+        paddingTop: 10
       },
     cardStyle: {
       paddingHorizontal: 5,

@@ -11,7 +11,7 @@ import ActualSubjects from './src/screens/ActualSubjects';
 import Planner from './src/screens/Planner';
 import PlannerQuarter from './src/screens/PlannerQuarter';
 import CareerFollower from './src/screens/CareerFollower';
-import WishesSubjects from './src/screens/WishesSubjects';
+import WishedSubjects from './src/screens/WishedSubjects';
 import WorkTime from './src/screens/WorkTime';
 import SavedAlternatives from './src/screens/SavedAlternatives';
 
@@ -88,8 +88,8 @@ const RootStack = createStackNavigator({
       title: 'Alternativas Guardadas'
     }
   },
-  WishesSubjects: {
-    screen: WishesSubjects,
+  WishedSubjects: {
+    screen: WishedSubjects,
     navigationOptions: {
       headerTintColor: '#FFF',
       headerStyle: {

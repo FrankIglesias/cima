@@ -24,12 +24,11 @@ class CareerFollower extends Component {
 renderProgressBar = () => {
   return <View style={style.taskBarContainer}>
     <Text style={style.taskBarText} >Porcentaje de materias aprobadas </Text>
-    <ProgressBarAnimated 
+    <ProgressBarAnimated
         {...style.taskBar}
         width={300}
         height={20}
         value={this.state.progress}
-       // value= {10}
         backgroundColorOnComplete="#6CC644"
       />
     </View>
@@ -37,7 +36,7 @@ renderProgressBar = () => {
 
 renderBody = () => {
   return(
-      <View >
+      <View>
         {this.renderProgressBar()}
         {this.state.approvedSubjects.map((subject, index) =>
         <CardView style={style.cardStyle} key={subject.label}>
@@ -60,7 +59,7 @@ renderLoader = () => {
       <View style={style.container}>
                 {this.state.animating? this.renderLoader():this.renderBody()}
       </View>
-      
+
     )
   }
 }

@@ -5,6 +5,7 @@ export default StyleSheet.create({
       paddingHorizontal: 5,
       paddingVertical: 10,
       flexDirection: 'row',
+      alignItems: 'center',
       margin: 5,
       marginTop: 0
     },
@@ -18,7 +19,7 @@ export default StyleSheet.create({
     },
     centeredText: {
         textAlign: 'center',
-        textDecorationColor: 'white', 
+        textDecorationColor: 'white',
         color: 'white',
         fontSize: 15
     },
@@ -31,7 +32,7 @@ export default StyleSheet.create({
     },
     taskBar: {
         paddingHorizontal: 20,
-        backgroundColor: "#AE1131", 
+        backgroundColor: "#AE1131",
         borderRadius: 6,
         borderWidth: 1,
         borderColor: 'gray'

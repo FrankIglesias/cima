@@ -2,8 +2,7 @@ import { StyleSheet } from 'react-native';
 
 export default StyleSheet.create({
   container: {
-    flex: 1,
-    paddingHorizontal: 20
+    flex: 1
   },
   row: {
     flexDirection: 'row'
@@ -11,6 +10,7 @@ export default StyleSheet.create({
   cardView: {
     paddingHorizontal: 5,
     paddingVertical: 10,
+    marginHorizontal: 10,
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
@@ -19,8 +19,7 @@ export default StyleSheet.create({
   },
   cardViewText: {
     fontSize: 16,
-    color: 'black',
-    margin: 5
+    color: 'black'
   },
   circle: {
     width: 50,
