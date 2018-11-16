@@ -1,17 +1,20 @@
 import React, { Component } from 'react';
-import {View, Text, TouchableOpacity } from 'react-native';
+import { View, Text, TouchableOpacity } from 'react-native';
 import DateTimePicker from 'react-native-modal-datetime-picker';
 
 import styles from './styles';
 
-  class BlockedDayPicker extends Component {
+class BlockedDayPicker extends Component {
   state = {
     showStartDatePicker: false,
     showEndDatePicker: false
-  }
+  };
 
-  toggleStartDatePicker =() => this.setState(prevState => ({showStartDatePicker: !prevState.showStartDatePicker}))
-  toggleEndDatePicker =() => this.setState(prevState => ({showEndDatePicker: !prevState.showEndDatePicker}))
+  toggleStartDatePicker = () =>
+    this.setState(prevState => ({ showStartDatePicker: !prevState.showStartDatePicker }));
+
+  toggleEndDatePicker = () =>
+    this.setState(prevState => ({ showEndDatePicker: !prevState.showEndDatePicker }));
 
   render() {
     return (
@@ -22,7 +25,7 @@ import styles from './styles';
             <Text style={styles.touchableButton}>{this.props.startTime ? this.props.startTime : '-'}</Text>
           </TouchableOpacity>
           <TouchableOpacity onPress={this.toggleEndDatePicker}>
-            <Text style={styles.touchableButton}>{this.props.endTime ? this.props.endTime : '-' }</Text>
+            <Text style={styles.touchableButton}>{this.props.endTime ? this.props.endTime : '-'}</Text>
           </TouchableOpacity>
         </View>
         <DateTimePicker
@@ -38,7 +41,7 @@ import styles from './styles';
           onConfirm={this.props.setEndTime}
         />
       </View>
-    )
+    );
   }
 }
 
