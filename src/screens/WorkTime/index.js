@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { View, ActivityIndicator } from 'react-native';
 import moment from 'moment';
@@ -9,7 +9,7 @@ import BlockedDayPicker from './components/BlockedDayPicker';
 import styles from './styles';
 
 const dates = ['Lunes', 'Martes', 'Miercoles', 'Jueves', 'Viernes', 'Sabado'];
-class WorkTime extends React.Component {
+class WorkTime extends Component {
   state = {
     blockedDays: dates.reduce(
       (accum, value) => ({
@@ -67,39 +67,38 @@ class WorkTime extends React.Component {
       }
     }));
 
-  renderBody = () => (
-    <View style={styles.container}>
-      {dates.map(day => (
-        <BlockedDayPicker
-          key={day}
-          day={day}
-          setStartTime={this.setStartTime(day)}
-          setEndTime={this.setEndTime(day)}
-          startTime={
-            this.state.blockedDays[day].startTime &&
-            moment(this.state.blockedDays[day].startTime).format('HH:mm')
-          }
-          endTime={
-            this.state.blockedDays[day].endTime && moment(this.state.blockedDays[day].endTime).format('HH:mm')
-          }
-        />
-      ))}
-      <Button title="Guardar" onPress={this.saveLabourHours} />
-    </View>
-  );
-
-  renderLoader = () => (
-    <ActivityIndicator
-      style={styles.activityIndicator}
-      animating={this.state.animating}
-      size="large"
-      color="#AE1131"
-    />
-  );
-
   render() {
     return (
-      <View style={styles.container}>{this.state.animating ? this.renderLoader() : this.renderBody()}</View>
+      <View style={styles.container}>
+        {this.state.animating ? (
+          <ActivityIndicator
+            style={styles.activityIndicator}
+            animating={this.state.animating}
+            size="large"
+            color="#AE1131"
+          />
+        ) : (
+          <View style={styles.container}>
+            {dates.map(day => (
+              <BlockedDayPicker
+                key={day}
+                day={day}
+                setStartTime={this.setStartTime(day)}
+                setEndTime={this.setEndTime(day)}
+                startTime={
+                  this.state.blockedDays[day].startTime &&
+                  moment(this.state.blockedDays[day].startTime).format('HH:mm')
+                }
+                endTime={
+                  this.state.blockedDays[day].endTime &&
+                  moment(this.state.blockedDays[day].endTime).format('HH:mm')
+                }
+              />
+            ))}
+            <Button title="Guardar" onPress={this.saveLabourHours} />
+          </View>
+        )}
+      </View>
     );
   }
 }

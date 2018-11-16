@@ -3,11 +3,10 @@ import { View, Text, ScrollView, ActivityIndicator } from 'react-native';
 import { connect } from 'react-redux';
 import Icon from 'react-native-ionicons';
 import CardView from 'react-native-cardview';
-import Toast, { DURATION } from 'react-native-easy-toast';
+import Toast from 'react-native-easy-toast';
 
 import * as PlanificadorService from '../../services/alternativity';
 import WishedSubjects from '../../Materias de 2';
-import Button from '../../component/Button';
 
 import styles from './styles';
 /* El core de nuestra app, esta vista se encarga de mostrar las alternativas que se generan,
@@ -86,62 +85,60 @@ class PlannerQuarter extends Component {
     }
   };
 
-  renderBody = () => (
-    <ScrollView style={styles.alternativesContainer}>
-      {this.state.animating ? (
-        <ActivityIndicator
-          style={styles.activityIndicator}
-          animating={this.state.animating}
-          size="large"
-          color="#AE1131"
-        />
-      ) : null}
-      {this.state.data.map((alternativity, index) => (
-        <CardView
-          cardElevation={2}
-          cardMaxElevation={2}
-          cornerRadius={5}
-          paddingBottom={10}
-          style={styles.cardView}
-        >
-          <View style={styles.row}>
-            <View style={styles.circle}>
-              <Text style={styles.centeredText}>{index + 1}</Text>
-            </View>
-            <View>
-              {alternativity.schedules.map(subject => (
-                <View>
-                  <Text style={styles.cardViewText}>{subject.materia}:</Text>
-                  <Text>
-                    {subject.days[0].name} {schedulesToTimes[subject.days[0].turn][subject.days[0].startHour]}{' '}
-                    a {schedulesToTimes[subject.days[0].turn][subject.days[0].endHour]} -{' '}
-                    {Math.random() > 0.5 ? 'Medrano' : 'Campus'}
-                  </Text>
-                </View>
-              ))}
-            </View>
-          </View>
-          <View style={styles.icon}>
-            <Icon name="heart" onPress={() => this.onPressButton(alternativity)} />
-          </View>
-        </CardView>
-      ))}
-    </ScrollView>
-  );
-
-  renderLoader = () => (
-    <ActivityIndicator
-      style={styles.activityIndicator}
-      animating={this.state.animating}
-      size="large"
-      color="#AE1131"
-    />
-  );
-
   render() {
     return (
       <View style={styles.container}>
-        {this.state.animating ? this.renderLoader() : this.renderBody()}
+        {this.state.animating ? (
+          <ActivityIndicator
+            style={styles.activityIndicator}
+            animating={this.state.animating}
+            size="large"
+            color="#AE1131"
+          />
+        ) : (
+          <ScrollView style={styles.alternativesContainer}>
+            {this.state.animating ? (
+              <ActivityIndicator
+                style={styles.activityIndicator}
+                animating={this.state.animating}
+                size="large"
+                color="#AE1131"
+              />
+            ) : null}
+            {this.state.data.map((alternativity, index) => (
+              <CardView
+                key={index}
+                cardElevation={2}
+                cardMaxElevation={2}
+                cornerRadius={5}
+                paddingBottom={10}
+                style={styles.cardView}
+              >
+                <View style={styles.row}>
+                  <View style={styles.circle}>
+                    <Text style={styles.centeredText}>{index + 1}</Text>
+                  </View>
+                  <View>
+                    {alternativity.schedules.map(subject => (
+                      <View key={subject.materia}>
+                        <Text style={styles.cardViewText}>{subject.materia}:</Text>
+                        <Text>
+                          {subject.days[0].name}{' '}
+                          {schedulesToTimes[subject.days[0].turn][subject.days[0].startHour]} a{' '}
+                          {schedulesToTimes[subject.days[0].turn][subject.days[0].endHour]} -{' '}
+                          {Math.random() > 0.5 ? 'Medrano' : 'Campus'}
+                        </Text>
+                      </View>
+                    ))}
+                  </View>
+                </View>
+                <View style={styles.icon}>
+                  <Icon name="heart" onPress={() => this.onPressButton(alternativity)} />
+                </View>
+              </CardView>
+            ))}
+          </ScrollView>
+        )}
         <Toast style={styles.toast} defaultCloseDelay={100} ref="toast" />
       </View>
     );
