@@ -45,9 +45,8 @@ export default StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center'
-},
-toast: {
-  backgroundColor:'#008000'
-}
-
+  },
+  toast: {
+    backgroundColor: '#008000'
+  }
 });

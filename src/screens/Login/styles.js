@@ -12,6 +12,6 @@ export default StyleSheet.create({
     marginTop: 30
   },
   toast: {
-    backgroundColor:'#AE1131'
+    backgroundColor: '#AE1131'
   }
 });
