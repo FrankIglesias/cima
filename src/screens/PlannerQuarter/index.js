@@ -44,7 +44,6 @@ const schedulesToTimes = {
 class PlannerQuarter extends Component {
   state = {
     data: [],
-    iconType: 'heart-empty',
     animating: true
   };
 
@@ -71,19 +70,47 @@ class PlannerQuarter extends Component {
 
   onPressButton = value => {
     this.refs.toast.show('Alternativa Guardada');
-
-    if (this.state.iconType == 'heart-empty') {
-      this.setState({ iconType: 'heart' });
-      this.props.firebase
-        .database()
-        .ref(`users/savedAlternativities/${Math.floor(Math.random() * 1000)}`)
-        .set(value.schedules)
+      this.props.firebase.database().ref('users/savedAlternativities/' + Math.floor(Math.random() * 1000)).set(value.schedules)
         .then(_ => console.log('TODO BIEN en workdays'))
-        .catch(err => console.log('TODO MAL en workdays', err));
-    } else {
-      this.setState({ iconType: 'heart-empty' });
-    }
-  };
+        .catch(err => console.log('TODO MAL en workdays', err))
+  }
+
+  renderBody = () => {
+    return (
+      <ScrollView style={styles.alternativesContainer}>
+        {this.state.animating ? <ActivityIndicator style={styles.activityIndicator} animating={this.state.animating} size="large" color="#AE1131" /> : null}
+        {this.state.data.map((alternativity, index) => (
+          <CardView
+            cardElevation={2}
+            cardMaxElevation={2}
+            cornerRadius={5}
+            paddingBottom={10}
+            style={styles.cardView}
+          >
+            <View style={styles.row}>
+              <View style={styles.circle}>
+                <Text style={styles.centeredText}>{index + 1}</Text>
+              </View>
+              <View>
+                {alternativity.schedules.map(subject => (
+                  <View>
+                    <Text style={styles.cardViewText}>{subject.materia}:</Text>
+                    <Text>{subject.days[0].name} {schedulesToTimes[subject.days[0].turn][subject.days[0].startHour]} a {schedulesToTimes[subject.days[0].turn][subject.days[0].endHour]} - {Math.random() > 0.5 ? 'Medrano' : 'Campus'}</Text>
+                  </View>
+                ))}
+              </View>
+            </View>
+            <View style={styles.icon}>
+              <Icon name="heart" onPress={() => this.onPressButton(alternativity)} />
+            </View>
+          </CardView>
+        ))}
+      </ScrollView>
+    )
+  }
+  renderLoader = () => {
+    return <ActivityIndicator style={styles.activityIndicator} animating={this.state.animating} size="large" color="#AE1131" />
+  }
 
   render() {
     return (
